@@ -1,0 +1,38 @@
+.sp-import-controls {
+    position: relative;
+}
+
+#sp-import-log {
+    display: none;
+}
+
+.loading::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('/wp-includes/images/spinner.gif') rgba(255, 255, 255, 0.5) no-repeat 50% 50%;
+}
+
+#sp_form_code {
+    width: 100%;
+}
+
+.menu-icon-sendpulse_form > .wp-menu-image:before {
+    background: url(../img/menu_icon.png) 50% 50% no-repeat;
+    background-size: contain;
+    content: ' ';
+    font-size: 0;
+}
+
+.h-help {
+    color: red;
+}
+
+.h-help:hover {
+    color: #ff7246;
+    font-weight: normal;
+}

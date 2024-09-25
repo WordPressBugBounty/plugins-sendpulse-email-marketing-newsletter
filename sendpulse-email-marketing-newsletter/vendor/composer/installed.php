@@ -1,0 +1,41 @@
+<?php return array(
+    'root' => array(
+        'name' => '__root__',
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
+        'reference' => '132ef1d09e4b6ca275b5b03f75c68fa6f5afcd1a',
+        'type' => 'library',
+        'install_path' => __DIR__ . '/../../',
+        'aliases' => array(),
+        'dev' => true,
+    ),
+    'versions' => array(
+        '__root__' => array(
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'reference' => '132ef1d09e4b6ca275b5b03f75c68fa6f5afcd1a',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'sendpulse/sendpulse-rest-api-php' => array(
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'reference' => '47d66d03b6c9fcc3feae337dc3ae86c42bb364b3',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../sendpulse/sendpulse-rest-api-php',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'tareq1988/wordpress-settings-api-class' => array(
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'reference' => '11a1685a3dd1b0451674c18288e5bd129dcbebe6',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../tareq1988/wordpress-settings-api-class',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+    ),
+);

@@ -1,0 +1,76 @@
+{
+    "packages": [
+        {
+            "name": "sendpulse/sendpulse-rest-api-php",
+            "version": "dev-master",
+            "version_normalized": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sendpulse/sendpulse-rest-api-php.git",
+                "reference": "47d66d03b6c9fcc3feae337dc3ae86c42bb364b3"
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "time": "2017-06-27T12:29:09+00:00",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "classmap": [
+                    "api/"
+                ]
+            },
+            "description": "The Sendpulse API functions.",
+            "install-path": "../sendpulse/sendpulse-rest-api-php"
+        },
+        {
+            "name": "tareq1988/wordpress-settings-api-class",
+            "version": "dev-master",
+            "version_normalized": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tareq1988/wordpress-settings-api-class.git",
+                "reference": "11a1685a3dd1b0451674c18288e5bd129dcbebe6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tareq1988/wordpress-settings-api-class/zipball/11a1685a3dd1b0451674c18288e5bd129dcbebe6",
+                "reference": "11a1685a3dd1b0451674c18288e5bd129dcbebe6",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.4"
+            },
+            "time": "2017-07-02T14:15:10+00:00",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPLv2"
+            ],
+            "authors": [
+                {
+                    "name": "Tareq Hasan",
+                    "email": "tareq@wedevs.com",
+                    "homepage": "http://tareq.wedevs.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "WordPress settings API Abstraction Class",
+            "homepage": "https://github.com/tareq1988/wordpress-settings-api-class",
+            "keywords": [
+                "settings-api",
+                "wordpress",
+                "wp"
+            ],
+            "install-path": "../tareq1988/wordpress-settings-api-class"
+        }
+    ],
+    "dev": true,
+    "dev-package-names": []
+}

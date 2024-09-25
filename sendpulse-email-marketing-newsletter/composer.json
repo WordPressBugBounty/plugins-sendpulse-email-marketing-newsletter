@@ -1,0 +1,12 @@
+{
+  "repositories": [
+    {
+      "url": "https://github.com/sendpulse/sendpulse-rest-api-php.git",
+      "type": "git"
+    }
+  ],
+  "require": {
+    "tareq1988/wordpress-settings-api-class": "dev-master",
+    "sendpulse/sendpulse-rest-api-php": "dev-master"
+  }
+}
