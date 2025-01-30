@@ -83,7 +83,7 @@ class Send_Pulse_Newsletter_Forms {
 		$code = get_post_meta( $post->ID, '_sp_form_code', true );
 		?>
         <textarea rows="20" cols="40" name="sp_form_code" id="sp_form_code"
-                  placeholder="<?php _e( 'Paste code here', 'sendpulse-email-marketing-newsletter' ); ?>"><?php echo $code; ?></textarea>
+                  placeholder="<?php _e( 'Paste code here', 'sendpulse-email-marketing-newsletter' ); ?>"><?php echo htmlspecialchars($code); ?></textarea>
         <p><?php echo sprintf( __( 'Code from <a href="%s">Constructor Form</a> (<a class="%s" href="%s" title="Open help page in new tab" target="_blank">Need help?</a>)', 'sendpulse-email-marketing-newsletter' ),
 				'https://login.sendpulse.com/emailservice/forms/constructor/',
 				'h-help',

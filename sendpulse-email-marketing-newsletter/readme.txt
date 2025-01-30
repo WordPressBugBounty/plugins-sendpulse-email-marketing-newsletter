@@ -3,8 +3,8 @@ Contributors: SendPulse
 Tags: newsletter subscription form, email subscription form, newsletter email optin, email newsletter signup form, email marketing
 Requires PHP: 5.6
 Requires at least: 5.7
-Tested up to: 6.3.1
-Stable tag: 2.1.5
+Tested up to: 6.7.1
+Stable tag: 2.1.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -107,6 +107,12 @@ For example, `<?php echo do_shortcode('[sendpulse-form id="..."]')?>`.
 * Change info messages on plugin activation
 * Change message box classes
 * Change function to check write available on server
+
+= 2.1.5 - 2024-05-28 =
+* Update strings
+
+= 2.1.6 - 2025-01-30 =
+* Fix XSS
 
 == Upgrade Notice ==
 In version 2.0.0 of SendPulse Email Marketing Newsletter removed plugin generated subscribe form in favor constructor code from SendPulse dashboard. 
