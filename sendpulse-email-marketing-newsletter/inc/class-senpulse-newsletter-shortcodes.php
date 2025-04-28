@@ -22,13 +22,53 @@ class Send_Pulse_Newsletter_Shortcodes {
 		add_shortcode( 'sendpulse-form', array( $this, 'subscribe_form' ) );
 	}
 
-    public function is_allowed_script($output, $allowed_urls) {
-        foreach ($allowed_urls as $url) {
-            if (strpos($output, $url) !== false) {
-                return true;
+    private function is_allowed_script($script, $allowed_hosts) {
+        libxml_use_internal_errors(true);
+        $dom = new DOMDocument();
+
+        if (defined('LIBXML_HTML_NOIMPLIED') && defined('LIBXML_HTML_NODEFDTD')) {
+            // Modern PHP: Load without adding <html><body>...</body></html> tags
+            $dom->loadHTML($script, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        } else {
+            // Old PHP fallback: manually wrap inside html/body
+            $dom->loadHTML('<html><body>' . $script . '</body></html>');
+        }
+
+        $scripts = $dom->getElementsByTagName('script');
+        if ($scripts->length !== 1) {
+            return false;
+        }
+
+        $tag = $scripts->item(0);
+        $src = $tag->getAttribute('src');
+        if (!$src) {
+            return false;
+        }
+
+        if (strpos($src, '//') === 0) {
+            $src = 'https:' . $src;
+        }
+
+        $host = parse_url($src, PHP_URL_HOST);
+        if (!$host || !in_array(strtolower($host), array_map('strtolower', $allowed_hosts), true)) {
+            return false;
+        }
+
+        $allowed_attrs = ['src', 'async', 'sp-form-id', 'type'];
+        foreach ($tag->attributes as $attr) {
+            $name = strtolower($attr->name);
+            $value = strtolower($attr->value);
+
+            if (!in_array($name, $allowed_attrs, true)) {
+                return false;
+            }
+
+            if ($name === 'type' && $value !== 'text/javascript') {
+                return false;
             }
         }
-        return false;
+
+        return true;
     }
 
     /**
