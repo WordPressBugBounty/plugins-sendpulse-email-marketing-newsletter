@@ -23,6 +23,11 @@ class Send_Pulse_Newsletter_Shortcodes {
 	}
 
     private function is_allowed_script($script, $allowed_hosts) {
+        // Prevent DOMDocument error on empty input
+        if (trim($script) === '') {
+            return false;
+        }
+
         libxml_use_internal_errors(true);
         $dom = new DOMDocument();
 

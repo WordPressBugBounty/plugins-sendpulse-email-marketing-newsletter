@@ -4,7 +4,7 @@ Tags: newsletter subscription form, email subscription form, newsletter email op
 Requires PHP: 5.6
 Requires at least: 5.7
 Tested up to: 6.8
-Stable tag: 2.1.7
+Stable tag: 2.1.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,7 +65,7 @@ You can install [SendPulse Free WebPush plugin](https://wordpress.org/plugins/se
 == Frequently Asked Questions ==
 
 = How place shortcode in themes file? =
-Shortcode can be used anywhere in the theme templates via do_shortcode function.
+Shortcode can be used anywhere in the theme templates via do_shortcode function. 
 For example, `<?php echo do_shortcode('[sendpulse-form id="..."]')?>`.
 
 
@@ -95,7 +95,7 @@ For example, `<?php echo do_shortcode('[sendpulse-form id="..."]')?>`.
 = 2.1.1 - 2022-07-16 =
 * Updated supported WP versions
 * Tested up to Wordpress 6.0.2
-* Updated translations
+* Updated translations 
 * Various fixes
 
 = 2.1.3 - 2023-06-05 =
@@ -116,6 +116,9 @@ For example, `<?php echo do_shortcode('[sendpulse-form id="..."]')?>`.
 
 = 2.1.7 - 2025-04-28 =
 * Fix XSS
+
+= 2.1.8 - 2025-04-28 =
+* Prevent DOMDocument error on empty input. Thanks to khizhnik
 
 == Upgrade Notice ==
 In version 2.0.0 of SendPulse Email Marketing Newsletter removed plugin generated subscribe form in favor constructor code from SendPulse dashboard. 
