@@ -149,7 +149,6 @@ class Send_Pulse_Newsletter_Settings {
 			);
 
 		// Add customer address book list
-
 		$books = $this->get_lists_address_book();
 
 		if ( ! empty( $books ) ) {
@@ -251,7 +250,9 @@ class Send_Pulse_Newsletter_Settings {
 
 			if ( is_array( $response ) ) {
 				$books = $response;
-			} else {
+			} elseif ( is_object( $response ) && empty( get_object_vars( $response ) ) ) {
+                $this->error = __( 'You have no books to show', 'sendpulse-email-marketing-newsletter' );
+            } else {
 				$this->error = __( 'Error API. Please try again later', 'sendpulse-email-marketing-newsletter' );
 			}
 		}

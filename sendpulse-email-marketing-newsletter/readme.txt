@@ -4,7 +4,7 @@ Tags: newsletter subscription form, email subscription form, newsletter email op
 Requires PHP: 5.6
 Requires at least: 5.7
 Tested up to: 6.8
-Stable tag: 2.1.8
+Stable tag: 2.1.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -117,8 +117,11 @@ For example, `<?php echo do_shortcode('[sendpulse-form id="..."]')?>`.
 = 2.1.7 - 2025-04-28 =
 * Fix XSS
 
-= 2.1.8 - 2025-04-28 =
+= 2.1.8 - 2025-05-07 =
 * Prevent DOMDocument error on empty input. Thanks to khizhnik
+
+= 2.1.9 - 2025-06-04 =
+* Added error message "You have no books to show" if your account has no available books instead of global message "Error API. Please try again later" for such case.
 
 == Upgrade Notice ==
 In version 2.0.0 of SendPulse Email Marketing Newsletter removed plugin generated subscribe form in favor constructor code from SendPulse dashboard. 
