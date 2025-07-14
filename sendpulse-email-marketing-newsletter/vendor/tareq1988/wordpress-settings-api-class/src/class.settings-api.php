@@ -105,7 +105,11 @@ if ( ! class_exists( 'WeDevs_Settings_API' ) ):
 
 				if ( isset( $section['desc'] ) && ! empty( $section['desc'] ) ) {
 					$section['desc'] = '<div class="inside">' . $section['desc'] . '</div>';
-					$callback        = create_function( '', 'echo "' . str_replace( '"', '\"', $section['desc'] ) . '";' );
+					//$callback        = create_function( '', 'echo "' . str_replace( '"', '\"', $section['desc'] ) . '";' );
+                    $desc = $section['desc']; // capture into local variable for closure
+                    $callback = function() use ( $desc ) {
+                        echo $desc;
+                    };
 				} else if ( isset( $section['callback'] ) ) {
 					$callback = $section['callback'];
 				} else {
