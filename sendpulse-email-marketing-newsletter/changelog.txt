@@ -71,3 +71,13 @@
 
 = 2.2.0 - 2025-07-14 =
 * Fix vendor library crashing on PHP8.3
+
+= 2.2.1 - 29.07.2025 =
+* Removed deprecated PHP code and compatibility with PHP < 7.2
+* Updated minimum PHP requirement to 7.1 (recommended 8.2+)
+* Improved security by preventing direct file access
+* Updated plugin header and metadata for clarity
+* Cleaned up unused Gulp build system from production package
+* Refined plugin tags for better discoverability
+* Fixed paths and error handling in custom error page template
+* Verified compatibility with WordPress 6.8.2

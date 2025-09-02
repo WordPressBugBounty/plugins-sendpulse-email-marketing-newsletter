@@ -1,31 +1,18 @@
 <?php
 
 /**
- *
- *
  * Class Send_Pulse_Newsletter_Forms
  */
 class Send_Pulse_Newsletter_Forms {
-
 	private $post_type = 'sendpulse_form';
-
 	public function __construct() {
-
-
 		add_action( 'init', array( $this, 'register_forms_post' ) );
-
-
 		add_action( 'add_meta_boxes_sendpulse_form', array( $this, 'meta_box' ) );
-
 		add_action( 'save_post', array( $this, 'save_meta' ) );
-
 		add_filter( "manage_{$this->post_type}_posts_columns", array( $this, 'get_columns' ) );
 		add_action( "manage_{$this->post_type}_posts_custom_column", array( $this, 'render_column' ), 10, 2 );
-
 		add_filter( 'post_updated_messages', array( $this, 'change_form_updated_messages' ) );
 		add_filter( 'post_date_column_status', array( $this, 'change_date_column_status' ), 10, 2 );
-
-
 	}
 
 	public function register_forms_post() {
@@ -75,96 +62,106 @@ class Send_Pulse_Newsletter_Forms {
 		), 'sendpulse_form', 'side', 'core', null );
 
 		$this->remove_built_in_metaboxes();
-
-
 	}
 
 	public function code_metabox_output( $post ) {
 		$code = get_post_meta( $post->ID, '_sp_form_code', true );
+		wp_nonce_field( 'sp_form_code_save', 'sp_form_code_nonce' );
 		?>
         <textarea rows="20" cols="40" name="sp_form_code" id="sp_form_code"
-                  placeholder="<?php _e( 'Paste code here', 'sendpulse-email-marketing-newsletter' ); ?>"><?php echo htmlspecialchars($code); ?></textarea>
-        <p><?php echo sprintf( __( 'Code from <a href="%s">Constructor Form</a> (<a class="%s" href="%s" title="Open help page in new tab" target="_blank">Need help?</a>)', 'sendpulse-email-marketing-newsletter' ),
+                  placeholder="<?php esc_attr_e( 'Paste code here', 'sendpulse-email-marketing-newsletter' ); ?>"><?php echo esc_textarea( $code ); ?></textarea>
+        <p>
+			<?php
+			// translators: 1: URL to the Constructor Form, 2: CSS class name for the help link, 3: URL to the help article
+			$translated_string = __( 'Code from <a href="%1$s">Constructor Form</a> (<a class="%2$s" href="%3$s" title="Open help page in new tab" target="_blank">Need help?</a>)', 'sendpulse-email-marketing-newsletter' );
+			echo wp_kses_post( sprintf(
+				$translated_string,
 				'https://login.sendpulse.com/emailservice/forms/constructor/',
 				'h-help',
-				'https://sendpulse.com/ru/blog/subscription-forms?utm_campaign=novinki-za-sentiabr&utm_source=sendpulse&utm_medium=email' ); ?></p>
+				'https://sendpulse.com/ru/blog/subscription-forms?utm_campaign=novinki-za-sentiabr&utm_source=sendpulse&utm_medium=email'
+			) );
+			?>
+        </p>
 		<?php
 	}
 
 	public function save_meta( $post_id ) {
-		if ( array_key_exists( 'sp_form_code', $_POST ) ) {
-			update_post_meta(
-				$post_id,
-				'_sp_form_code',
-				$_POST['sp_form_code']
-			);
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$nonce = isset( $_POST['sp_form_code_nonce'] ) ? wp_unslash( $_POST['sp_form_code_nonce'] ) : '';
+
+		if ( ! wp_verify_nonce( $nonce, 'sp_form_code_save' ) ) {
+			return;
+		}
+
+		// Bail early on autosave
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+			return;
+		}
+
+		// Capability check
+		if ( ! current_user_can( 'edit_post', $post_id ) ) {
+			return;
+		}
+
+		if ( isset( $_POST['sp_form_code'] ) ) {
+			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+			$raw_code = wp_unslash( $_POST['sp_form_code'] );
+			update_post_meta( $post_id, '_sp_form_code', $raw_code );
 		}
 	}
 
 	public function shortcode_metabox_output( $post ) {
-		$this->shortcode_text( $post->ID );
-		$desc = __( 'You should paste this shortcode in themes files', 'sendpulse-email-marketing-newsletter' );
-		?>
-
-        <p><?php echo $desc; ?></p>
-		<?php
-
-		$this->post_submit_meta_box( $post );
-
+		$this->shortcode_text( $post->ID );?>
+        <p><?php echo esc_html__( 'You should paste this shortcode in your page/post/widget', 'sendpulse-email-marketing-newsletter' ); ?></p>
+		<?php $this->post_submit_meta_box( $post );
 	}
 
 	public function remove_built_in_metaboxes() {
-
-		remove_meta_box( 'submitdiv', null, 'side' );
-
+		remove_meta_box( 'submitdiv', 'sendpulse_form', 'side' );
 	}
 
-	public function post_submit_meta_box( $post ) {
-		?>
-
+	public function post_submit_meta_box( $post ) { ?>
         <div class="submitbox" id="submitpost">
             <div style="display:none;">
-				<?php submit_button( __( 'Save' ), '', 'save' ); ?>
+				<?php submit_button( __( 'Save', 'sendpulse-email-marketing-newsletter' ), '', 'save' ); ?>
             </div>
             <div id="major-publishing-actions">
                 <div id="delete-action">
 					<?php
-					if ( current_user_can( "delete_post", $post->ID ) ) {
+					if ( current_user_can( 'delete_post', $post->ID ) ) {
 						if ( ! EMPTY_TRASH_DAYS ) {
-							$delete_text = __( 'Delete Permanently' );
+							$delete_text = __( 'Delete Permanently', 'sendpulse-email-marketing-newsletter' );
 						} else {
-							$delete_text = __( 'Move to Trash' );
+							$delete_text = __( 'Move to Trash', 'sendpulse-email-marketing-newsletter' );
 						}
 						?>
                         <a class="submitdelete deletion"
-                           href="<?php echo get_delete_post_link( $post->ID ); ?>"><?php echo $delete_text; ?></a><?php
-					} ?>
+                           href="<?php echo esc_url( get_delete_post_link( $post->ID ) ); ?>">
+							<?php echo esc_html( $delete_text ); ?>
+                        </a>
+						<?php
+					}
+					?>
                 </div>
                 <div id="publishing-action">
                     <span class="spinner"></span>
                     <input name="original_publish" type="hidden" id="original_publish"
-                           value="<?php esc_attr_e( 'Save' ) ?>"/>
-					<?php submit_button( __( 'Save' ), 'primary large', 'publish', false ); ?>
+                           value="<?php esc_attr_e( 'Save', 'sendpulse-email-marketing-newsletter' ); ?>" />
+					<?php submit_button( __( 'Save', 'sendpulse-email-marketing-newsletter' ), 'primary large', 'publish', false ); ?>
                 </div>
                 <div class="clear"></div>
             </div>
-
         </div>
-
-	<?php }
+		<?php
+	}
 
 	public function get_columns( $columns ) {
-
 		$first_array = array_splice( $columns, 0, 2 );
 		$columns     = array_merge( $first_array, array( 'sp_shortcode' => __( 'Shortcode', 'sendpulse-email-marketing-newsletter' ) ), $columns );
-
-
 		return $columns;
-
 	}
 
 	public function render_column( $column_name, $post_id ) {
-
 		if ( 'sp_shortcode' == $column_name ) {
 			$this->shortcode_text( $post_id );
 		}
@@ -173,9 +170,9 @@ class Send_Pulse_Newsletter_Forms {
 
 	protected function shortcode_text( $post_id ) {
 		$shortcode = sprintf( '[sendpulse-form id="%s"]', esc_attr( $post_id ) );
-		$desc      = __( 'You should paste this shortcode in themes files', 'sendpulse-email-marketing-newsletter' ); ?>
+		$desc      = __( 'You should paste this shortcode in your page/post/widget', 'sendpulse-email-marketing-newsletter' ); ?>
 
-        <input type="text" value="<?php echo esc_attr( $shortcode ); ?>" title="<?php echo $desc; ?>"
+        <input type="text" value="<?php echo esc_attr( $shortcode ); ?>" title="<?php echo esc_attr( $desc ); ?>"
                readonly="readonly">
 		<?php
 	}
@@ -206,7 +203,6 @@ class Send_Pulse_Newsletter_Forms {
 
 		return $status;
 	}
-
 
 }
 

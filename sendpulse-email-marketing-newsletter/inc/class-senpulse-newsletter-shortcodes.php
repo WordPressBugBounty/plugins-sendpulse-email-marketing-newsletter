@@ -54,10 +54,11 @@ class Send_Pulse_Newsletter_Shortcodes {
             $src = 'https:' . $src;
         }
 
-        $host = parse_url($src, PHP_URL_HOST);
-        if (!$host || !in_array(strtolower($host), array_map('strtolower', $allowed_hosts), true)) {
-            return false;
-        }
+	    $parts = wp_parse_url( $src );
+	    $host = $parts['host'] ?? '';
+	    if ( ! $host || ! in_array( strtolower( $host ), array_map( 'strtolower', $allowed_hosts ), true ) ) {
+		    return false;
+	    }
 
         $allowed_attrs = ['src', 'async', 'sp-form-id', 'type'];
         foreach ($tag->attributes as $attr) {

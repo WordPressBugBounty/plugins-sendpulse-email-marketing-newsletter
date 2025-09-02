@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Add Wordpress users to address book.
+ * Add WordPress users to address book.
  *
  * Class Send_Pulse_Newsletter_Users
  */
@@ -11,7 +11,6 @@ class Send_Pulse_Newsletter_Users {
 	 * Send_Pulse_Newsletter_Users constructor.
 	 */
 	public function __construct() {
-
 		$is_subscribe_after_register = Send_Pulse_Newsletter_Settings::get_option( 'is_subscribe_after_register', 'sp_api_setting' );
 
 		add_action( 'user_register', array( $this, 'save_user_ip' ), 20 );
@@ -40,7 +39,6 @@ class Send_Pulse_Newsletter_Users {
 	 * @return string User IP.
 	 *
 	 */
-
 	public static function get_user_ip( $user_id ) {
 		return get_user_meta( $user_id, '_sp_user_ip', true );
 	}
@@ -51,13 +49,9 @@ class Send_Pulse_Newsletter_Users {
 	 * @param int $user_id User ID.
 	 */
 	public function subscribe_after_register( $user_id ) {
-
 		$user = new WP_User( $user_id );
-
 		$user_ip = self::get_user_ip( $user_id );
-
 		$api = new Send_Pulse_Newsletter_API();
-
 
 		$emails = array(
 			array(
@@ -72,12 +66,20 @@ class Send_Pulse_Newsletter_Users {
 			$emails[0]['variables']['subscribe_ip'] = $user_ip;
 		}
 
-		$result = $api->addEmails( $api->default_book, $emails );
+		$vars = [ 'name' => $user->display_name ];
+		if ( $user_ip ) {
+			$vars['subscribe_ip'] = $user_ip;
+		}
+
+		$result = $api->add_contact_to_list(
+			$user->user_email,
+			$api->default_book,
+			$vars
+		);
 
 		if ( isset( $result->is_error ) && $result->is_error ) {
-			$msg = isset( $result->message ) ? $result->message : __( 'Something went wrong', 'sendpulse-email-marketing-newsletter' );
-
-			error_log( 'SendPulse Newsletter: ' . $msg );
+			$msg = $result->message ?? __( 'Something went wrong', 'sendpulse-email-marketing-newsletter' );
+			return new WP_Error('sendpulse_error', json_encode($msg));
 		}
 	}
 
@@ -87,11 +89,10 @@ class Send_Pulse_Newsletter_Users {
 	 * @return string Users IP
 	 *
 	 */
-
 	public static function define_user_ip() {
-		$client  = @$_SERVER['HTTP_CLIENT_IP'];
-		$forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
-		$remote  = $_SERVER['REMOTE_ADDR'];
+		$client  = isset($_SERVER['HTTP_CLIENT_IP']) ? sanitize_text_field( wp_unslash( $_SERVER['HTTP_CLIENT_IP'] ) ) : '';
+		$forward = isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? sanitize_text_field( wp_unslash( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) : '';
+		$remote  = isset($_SERVER['REMOTE_ADDR']) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '';
 
 		if ( filter_var( $client, FILTER_VALIDATE_IP ) ) {
 			$ip = $client;
@@ -103,7 +104,6 @@ class Send_Pulse_Newsletter_Users {
 
 		return $ip;
 	}
-
 
 }
 

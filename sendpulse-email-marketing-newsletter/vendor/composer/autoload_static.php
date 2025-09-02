@@ -6,21 +6,29 @@ namespace Composer\Autoload;
 
 class ComposerStaticInite1798030ff62ec93eeab468f970388ff
 {
+    public static $prefixLengthsPsr4 = array (
+        'S' => 
+        array (
+            'Sendpulse\\RestApi\\' => 18,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'Sendpulse\\RestApi\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sendpulse/rest-api/src',
+        ),
+    );
+
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-        'FileStorage' => __DIR__ . '/..' . '/sendpulse/sendpulse-rest-api-php/api/Storage/FileStorage.php',
-        'MemcacheStorage' => __DIR__ . '/..' . '/sendpulse/sendpulse-rest-api-php/api/Storage/MemcacheStorage.php',
-        'MemcachedStorage' => __DIR__ . '/..' . '/sendpulse/sendpulse-rest-api-php/api/Storage/MemcachedStorage.php',
-        'SendpulseApi' => __DIR__ . '/..' . '/sendpulse/sendpulse-rest-api-php/api/sendpulse.php',
-        'SendpulseApi_Interface' => __DIR__ . '/..' . '/sendpulse/sendpulse-rest-api-php/api/sendpulseInterface.php',
-        'SessionStorage' => __DIR__ . '/..' . '/sendpulse/sendpulse-rest-api-php/api/Storage/SessionStorage.php',
-        'TokenStorageInterface' => __DIR__ . '/..' . '/sendpulse/sendpulse-rest-api-php/api/Storage/TokenStorageInterface.php',
-        'WeDevs_Settings_API' => __DIR__ . '/..' . '/tareq1988/wordpress-settings-api-class/src/class.settings-api.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInite1798030ff62ec93eeab468f970388ff::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInite1798030ff62ec93eeab468f970388ff::$prefixDirsPsr4;
             $loader->classMap = ComposerStaticInite1798030ff62ec93eeab468f970388ff::$classMap;
 
         }, null, ClassLoader::class);

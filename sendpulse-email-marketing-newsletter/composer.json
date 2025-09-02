@@ -6,7 +6,6 @@
     }
   ],
   "require": {
-    "tareq1988/wordpress-settings-api-class": "dev-master",
-    "sendpulse/sendpulse-rest-api-php": "dev-master"
+    "sendpulse/rest-api": "^2.0"
   }
 }

@@ -18,24 +18,13 @@ class Send_Pulse_Newsletter_Loader {
 	private $plugin_url;
 
 	/**
-	 * @var string Plugin relative patch.
-	 *
-	 */
-
-	private $plugin_rel_patch;
-
-
-	/**
 	 * Send_Pulse_Newsletter constructor.
 	 *
-	 * @var $plugin_url string
-	 * @var $plugin_rel_patch string
+	 * @param string $plugin_url
 	 *
 	 */
-	public function __construct( $plugin_url, $plugin_rel_patch ) {
+	public function __construct( $plugin_url ) {
 		$this->plugin_url = $plugin_url;
-		$this->plugin_rel_patch = $plugin_rel_patch;
-		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
 		$this->inc();
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_assets' ) );
 	}
@@ -45,12 +34,12 @@ class Send_Pulse_Newsletter_Loader {
 	 */
 	protected function inc() {
 		$vendor_dir = dirname( __FILE__ ) . '/../vendor/';
-		include_once( $vendor_dir . 'tareq1988/wordpress-settings-api-class/src/class.settings-api.php' );
-		include_once( $vendor_dir . 'sendpulse/sendpulse-rest-api-php/api/Storage/TokenStorageInterface.php' );
-		include_once( $vendor_dir . 'sendpulse/sendpulse-rest-api-php/api/Storage/FileStorage.php' );
-		include_once( $vendor_dir . 'sendpulse/sendpulse-rest-api-php/api/Storage/SessionStorage.php' );
-		include_once( $vendor_dir . 'sendpulse/sendpulse-rest-api-php/api/sendpulseInterface.php' );
-		include_once( $vendor_dir . 'sendpulse/sendpulse-rest-api-php/api/sendpulse.php' );
+		include_once( $vendor_dir . 'sendpulse/rest-api/src/Contracts/TokenStorageInterface.php' );
+        include_once( $vendor_dir . 'sendpulse/rest-api/src/Contracts/ApiInterface.php' );
+		include_once( $vendor_dir . 'sendpulse/rest-api/src/Storage/FileStorage.php' );
+		include_once( $vendor_dir . 'sendpulse/rest-api/src/Storage/SessionStorage.php' );
+        include_once( $vendor_dir . 'sendpulse/rest-api/src/ApiClient.php' );
+        include_once( $vendor_dir . 'sendpulse/rest-api/src/ApiClientException.php' );
 		include_once( 'class-senpulse-newsletter-forms.php' );
 		include_once( 'class-sendpulse-newsletter-api.php' );
 		include_once( 'class-sendpulse-newsletter-settings.php' );
@@ -59,20 +48,15 @@ class Send_Pulse_Newsletter_Loader {
 		include_once( 'class-sendpulse-newsletter-users.php' );
 	}
 
-
 	public function admin_assets() {
-		$prefix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
-		wp_enqueue_style( 'sp-admin-style', $this->plugin_url . "assets/css/admin{$prefix}.css", array(), $this->version );
-		wp_enqueue_script( 'sp-admin-script', $this->plugin_url . "assets/js/admin{$prefix}.js", array( 'jquery' ), $this->version, true );
-		$data = array(
-			'ajax_url' => admin_url( 'admin-ajax.php' )
-		);
+		wp_enqueue_style( 'sp-admin-style', $this->plugin_url . "assets/css/sp-newsletter-admin.css", array(), $this->version );
+        wp_enqueue_script( 'sp-admin-dismiss-script', $this->plugin_url . "assets/js/sp-newsletter-admin-dismiss-script.js", array( 'jquery' ), $this->version, true );
+        wp_enqueue_script( 'sp-admin-importer-script', $this->plugin_url . "assets/js/sp-newsletter-admin-importer.js", array( 'jquery' ), $this->version, true );
 
-		wp_localize_script( 'sp-admin-script', 'sp_admin_params', $data );
-	}
-
-	function load_textdomain() {
-		load_plugin_textdomain( 'sendpulse-email-marketing-newsletter', false, $this->plugin_rel_patch );
+        wp_localize_script( 'sp-admin-importer-script', 'sp_admin_params', [
+            'ajax_url' => admin_url( 'admin-ajax.php' ),
+            '_ajax_nonce' => wp_create_nonce( 'sendpulse_import' )
+        ] );
 	}
 	
 }

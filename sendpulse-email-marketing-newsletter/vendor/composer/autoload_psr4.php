@@ -6,4 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Sendpulse\\RestApi\\' => array($vendorDir . '/sendpulse/rest-api/src'),
 );

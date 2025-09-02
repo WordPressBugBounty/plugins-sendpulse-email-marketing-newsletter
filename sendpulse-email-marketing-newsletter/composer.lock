@@ -1,86 +1,63 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "hash": "f99d769714d1b66fe7d1df7260a981f4",
-    "content-hash": "97660baa502a9af717823d937d1685c5",
+    "content-hash": "82ccf865108d441c4ebcc292ceb29dc5",
     "packages": [
         {
-            "name": "sendpulse/sendpulse-rest-api-php",
-            "version": "dev-master",
+            "name": "sendpulse/rest-api",
+            "version": "2.0.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sendpulse/sendpulse-rest-api-php.git",
-                "reference": "47d66d03b6c9fcc3feae337dc3ae86c42bb364b3"
+                "reference": "457ca31c0ff3a3f849182d053d50928085d432ae"
             },
             "require": {
-                "php": ">=5.4.0"
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=7.1.0"
             },
             "type": "library",
             "autoload": {
-                "classmap": [
-                    "api/"
-                ]
+                "psr-4": {
+                    "Sendpulse\\RestApi\\": "src/"
+                }
             },
-            "description": "The Sendpulse API functions.",
-            "time": "2017-06-27 12:29:09"
-        },
-        {
-            "name": "tareq1988/wordpress-settings-api-class",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/tareq1988/wordpress-settings-api-class.git",
-                "reference": "11a1685a3dd1b0451674c18288e5bd129dcbebe6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/tareq1988/wordpress-settings-api-class/zipball/11a1685a3dd1b0451674c18288e5bd129dcbebe6",
-                "reference": "11a1685a3dd1b0451674c18288e5bd129dcbebe6",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.2.4"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "src/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "GPLv2"
+                "MIT"
             ],
             "authors": [
                 {
-                    "name": "Tareq Hasan",
-                    "email": "tareq@wedevs.com",
-                    "homepage": "http://tareq.wedevs.com",
-                    "role": "Developer"
+                    "name": "Maksym Ustymenko",
+                    "email": "m.ustymenko@sendpulse.com"
+                },
+                {
+                    "name": "Alexey Moroz",
+                    "email": "a.moroz@sendpulse.com"
+                },
+                {
+                    "name": "Evgeniy Bilovol",
+                    "email": "e.bilovol@sendpulse.com"
                 }
             ],
-            "description": "WordPress settings API Abstraction Class",
-            "homepage": "https://github.com/tareq1988/wordpress-settings-api-class",
+            "description": "Sendpulse REST API client library",
             "keywords": [
-                "settings-api",
-                "wordpress",
-                "wp"
+                "api",
+                "rest",
+                "sendpulse"
             ],
-            "time": "2017-07-02 14:15:10"
+            "time": "2024-06-03T10:49:25+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "tareq1988/wordpress-settings-api-class": 20,
-        "sendpulse/sendpulse-rest-api-php": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "2.6.0"
 }

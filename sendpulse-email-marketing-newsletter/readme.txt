@@ -1,20 +1,19 @@
 === SendPulse Email Marketing Newsletter ===
 Contributors: SendPulse
-Tags: newsletter subscription form, email subscription form, newsletter email optin, email newsletter signup form, email marketing
-Requires PHP: 5.6
+Tags: email marketing, newsletter, subscription form, email optin, autoresponder
+Requires PHP: 7.2
 Requires at least: 5.7
 Tested up to: 6.8
-Stable tag: 2.2.0
+Stable tag: 2.2.1
 License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Add e-mail subscription form, send marketing newsletters and create autoresponders.
+Add a customizable email subscription form to your site, send newsletters, and automate email campaigns with autoresponders using SendPulse.
 
 == Description ==
 
 SendPulse plugin for WordPress
 Add an email subscription form to your site. Each new subscriber will be automatically added to your mailing list. Create and send email campaigns with SendPulse, a multi-channel marketing automation platform.
-
 
 = FEATURES =
 * Install the plugin in 1 click and set up within minutes;
@@ -53,8 +52,7 @@ You can install [SendPulse Free WebPush plugin](https://wordpress.org/plugins/se
 4. To display your subscription form, use a shortcode (for example `[sendpulse-form id="..."]` where "..." is form id) in editor or place `<?php echo do_shortcode('[sendpulse-form id="..."]')?>` in your themes file.
 
 = Requirement =
-* PHP version >= 5.6+ ([Recommended](https://wordpress.org/about/requirements/) >= 5.6+)
-
+* PHP version >= 7.2+ ([Recommended](https://wordpress.org/about/requirements/) >= 7.2+)
 
 == Installation ==
 
@@ -68,64 +66,9 @@ You can install [SendPulse Free WebPush plugin](https://wordpress.org/plugins/se
 Shortcode can be used anywhere in the theme templates via do_shortcode function. 
 For example, `<?php echo do_shortcode('[sendpulse-form id="..."]')?>`.
 
-
 == Screenshots ==
 
 1. SendPulse Forms table view.
 2. Form editor.
 3. API setting.
 4. Import Wordpress user.
-
-== Changelog ==
-
-= 1.5.0 - 2017-08-22 =
-* Changed: Ability to use the constructor code from SendPulse dashboard.
-* Fixed: Support several forms on the page.
-
-= 2.0.0 - 2017-09-19 =
-* Added: Ability create multiple form with constructor code from SendPulse dashboard.
-* Removed: Plugin generated subscribe form in favor constructor code from SendPulse dashboard.
-
-= 2.0.1 - 2017-09-25 =
-* Changed: Documentation and help link.
-
-= 2.1.0 - 2017-10-18 =
-* Changed: Down minimal PHP version requirement.
-
-= 2.1.1 - 2022-07-16 =
-* Updated supported WP versions
-* Tested up to Wordpress 6.0.2
-* Updated translations 
-* Various fixes
-
-= 2.1.3 - 2023-06-05 =
-* Updated supported WP versions
-* Tested up to Wordpress 6.2.2
-* On plugin activation automatic
-
-= 2.1.4 - 2023-07-14 =
-* Change info messages on plugin activation
-* Change message box classes
-* Change function to check write available on server
-
-= 2.1.5 - 2024-05-28 =
-* Update strings
-
-= 2.1.6 - 2025-01-30 =
-* Fix XSS
-
-= 2.1.7 - 2025-04-28 =
-* Fix XSS
-
-= 2.1.8 - 2025-05-07 =
-* Prevent DOMDocument error on empty input. Thanks to khizhnik
-
-= 2.1.9 - 2025-06-04 =
-* Added error message "You have no books to show" if your account has no available books instead of global message "Error API. Please try again later" for such case.
-
-= 2.2.0 - 2025-07-14 =
-* Fix vendor library crashing on PHP8.3
-
-== Upgrade Notice ==
-In version 2.0.0 of SendPulse Email Marketing Newsletter removed plugin generated subscribe form in favor constructor code from SendPulse dashboard. 
-Its breaking change! Please use link https://login.sendpulse.com/emailservice/forms/constructor/ to generate new forms.

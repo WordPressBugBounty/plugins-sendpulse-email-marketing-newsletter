@@ -40,18 +40,21 @@ class Send_Pulse_Newsletter_Requirement {
 		$this->error_msg[] = 'php';
 	}
 
-	public function is_folder_writable($folder_path) {
-		$writable = false;
+	public function is_folder_writable( $folder_path ) {
+		global $wp_filesystem;
 
-		// Check if the folder exists
-		if (file_exists($folder_path)) {
-			// Check if the folder is writable
-			if (is_writable($folder_path)) {
-				$writable = true;
-			}
+		// Initialize WP Filesystem
+		if ( empty( $wp_filesystem ) ) {
+			require_once ABSPATH . '/wp-admin/includes/file.php';
+			WP_Filesystem();
 		}
 
-		return $writable;
+		// Check if the folder exists and is writable using WP_Filesystem
+		if ( $wp_filesystem->is_dir( $folder_path ) && $wp_filesystem->is_writable( $folder_path ) ) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**

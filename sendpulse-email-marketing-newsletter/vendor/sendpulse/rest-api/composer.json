@@ -1,0 +1,34 @@
+{
+  "name": "sendpulse/rest-api",
+  "description": "Sendpulse REST API client library",
+  "keywords": [
+    "sendpulse",
+    "rest",
+    "api"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Maksym Ustymenko",
+      "email": "m.ustymenko@sendpulse.com"
+    },
+    {
+      "name": "Alexey Moroz",
+      "email": "a.moroz@sendpulse.com"
+    },
+    {
+      "name": "Evgeniy Bilovol",
+      "email": "e.bilovol@sendpulse.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.1.0",
+    "ext-json": "*",
+    "ext-curl": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Sendpulse\\RestApi\\": "src/"
+    }
+  }
+}
