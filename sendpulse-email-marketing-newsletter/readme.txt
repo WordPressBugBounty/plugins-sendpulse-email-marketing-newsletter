@@ -1,10 +1,10 @@
 === SendPulse Email Marketing Newsletter ===
 Contributors: SendPulse
 Tags: email marketing, newsletter, subscription form, email optin, autoresponder
-Requires PHP: 7.2
+Requires PHP: 7.1
 Requires at least: 5.7
 Tested up to: 6.8
-Stable tag: 2.2.1
+Stable tag: 2.2.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 

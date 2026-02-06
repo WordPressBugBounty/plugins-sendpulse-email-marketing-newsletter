@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Class Send_Pulse_Newsletter_Forms
  */

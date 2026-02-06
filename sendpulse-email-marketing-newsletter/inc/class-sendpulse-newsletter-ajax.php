@@ -35,6 +35,13 @@ class Send_Pulse_Newsletter_Ajax {
 	 * Handle import ajax action.
 	 */
 	public function import() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error(
+				[ 'message' => __( 'You are not allowed to perform this action.', 'sendpulse-email-marketing-newsletter' ) ],
+				403
+			);
+		}
+
 		delete_transient( $this->log_key );
 		/** @phpstan-ignore-next-line */
 		$this->log_progress( __( 'Import started', 'sendpulse-email-marketing-newsletter' ) );
@@ -109,6 +116,13 @@ class Send_Pulse_Newsletter_Ajax {
 	}
 
 	public function get_import_data() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error(
+				[ 'message' => __( 'You are not allowed to perform this action.', 'sendpulse-email-marketing-newsletter' ) ],
+				403
+			);
+		}
+
         check_ajax_referer( 'sendpulse_import' );
 
         $api = new Send_Pulse_Newsletter_API();
@@ -131,6 +145,13 @@ class Send_Pulse_Newsletter_Ajax {
     }
 
     public function ajax_get_import_data() {
+	    if ( ! current_user_can( 'manage_options' ) ) {
+		    wp_send_json_error(
+			    [ 'message' => __( 'You are not allowed to perform this action.', 'sendpulse-email-marketing-newsletter' ) ],
+			    403
+		    );
+	    }
+
         check_ajax_referer( 'sendpulse_import' );
 
         $books = [];
@@ -159,7 +180,15 @@ class Send_Pulse_Newsletter_Ajax {
     }
 
     public function get_import_log() {
+	    if ( ! current_user_can( 'manage_options' ) ) {
+		    wp_send_json_error(
+			    [ 'message' => __( 'You are not allowed to perform this action.', 'sendpulse-email-marketing-newsletter' ) ],
+			    403
+		    );
+	    }
+
         check_ajax_referer( 'sendpulse_import' );
+
         $log = get_transient( $this->log_key );
         if ( ! is_array( $log ) ) {
             $log = [];
@@ -169,7 +198,6 @@ class Send_Pulse_Newsletter_Ajax {
             'log' => implode( "\n", $log )
         ]);
     }
-
 
 }
 

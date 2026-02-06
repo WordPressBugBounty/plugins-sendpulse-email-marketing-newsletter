@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Register and render plugins shortcodes
  *

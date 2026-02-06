@@ -174,7 +174,7 @@ class Send_Pulse_Newsletter_Settings {
             'edit.php?post_type=sendpulse_form',
             __( 'Settings', 'sendpulse-email-marketing-newsletter' ),
             __( 'Settings', 'sendpulse-email-marketing-newsletter' ),
-            'delete_posts',
+            'manage_options',
             'send_pulse_settings',
             array( $this, 'plugin_page' )
         );

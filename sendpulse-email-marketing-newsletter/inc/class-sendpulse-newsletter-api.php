@@ -21,33 +21,6 @@ class Send_Pulse_Newsletter_API
      */
     protected $requirement;
 
-//    public function __construct($apiClient = null)
-//    {
-//        $user_id = $this->get_option('client_id');
-//        $secret = $this->get_option('client_secret');
-//
-//        $this->requirement = new Send_Pulse_Newsletter_Requirement();
-//
-//		if (!$apiClient) {
-//			$storage       = null;
-//			$notice_action = '';
-//
-//			if ( $this->requirement->is_folder_writable( SP_EMAIL_MARKETING_PLUGIN_STORAGE_DIR ) !== true ) {
-//				$storage       = new SessionStorage();
-//				$notice_action = 'sp_emp_admin_activated_session_storage_notice';
-//			} else {
-//				$storage       = new FileStorage( SP_EMAIL_MARKETING_PLUGIN_STORAGE_DIR );
-//				$notice_action = 'sp_emp_admin_activated_file_storage_notice';
-//			}
-//
-//			$this->api = new ApiClient( $user_id, $secret, $storage );
-//
-//			add_action( 'admin_notices', array( $this, $notice_action ) );
-//		}
-//
-//	    $this->api = $apiClient;
-//        $this->default_book = $this->get_option('default_book');
-//    }
 	public function __construct($apiClient = null)
 	{
 		$user_id = $this->get_option('client_id');

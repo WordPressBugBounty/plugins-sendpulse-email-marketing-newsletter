@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Loader plugin class.
  *
@@ -48,15 +47,66 @@ class Send_Pulse_Newsletter_Loader {
 		include_once( 'class-sendpulse-newsletter-users.php' );
 	}
 
-	public function admin_assets() {
-		wp_enqueue_style( 'sp-admin-style', $this->plugin_url . "assets/css/sp-newsletter-admin.css", array(), $this->version );
-        wp_enqueue_script( 'sp-admin-dismiss-script', $this->plugin_url . "assets/js/sp-newsletter-admin-dismiss-script.js", array( 'jquery' ), $this->version, true );
-        wp_enqueue_script( 'sp-admin-importer-script', $this->plugin_url . "assets/js/sp-newsletter-admin-importer.js", array( 'jquery' ), $this->version, true );
+    public function admin_assets( $hook ) {
+        // Always load CSS in admin (menu icon & basic styling).
+        wp_enqueue_style(
+            'sendpulse-email-marketing-newsletter-admin-style',
+            $this->plugin_url . 'assets/css/sp-newsletter-admin.css',
+            array(),
+            $this->version
+        );
 
-        wp_localize_script( 'sp-admin-importer-script', 'sp_admin_params', [
-            'ajax_url' => admin_url( 'admin-ajax.php' ),
-            '_ajax_nonce' => wp_create_nonce( 'sendpulse_import' )
-        ] );
-	}
-	
+        // Always load the dismiss script (safe, no sensitive data).
+        wp_enqueue_script(
+            'sendpulse-email-marketing-newsletter-dismiss-script',
+            $this->plugin_url . 'assets/js/sp-newsletter-admin-dismiss-script.js',
+            array( 'jquery' ),
+            $this->version,
+            true
+        );
+
+        // Localize vars used by sp-newsletter-admin-dismiss-script.js.
+        wp_localize_script(
+            'sendpulse-email-marketing-newsletter-dismiss-script',
+            'sp_emp_dismiss_script_vars',
+            array(
+                'ajaxurl' => admin_url( 'admin-ajax.php' ),
+            )
+        );
+
+        // From here on, only care about importer (sensitive) stuff.
+        if ( ! function_exists( 'get_current_screen' ) ) {
+            return;
+        }
+
+        $screen = get_current_screen();
+
+        // Plugin-specific pages (settings & import).
+        $plugin_pages = array(
+            'sendpulse_form_page_send_pulse_settings',
+            'sendpulse_form_page_send_pulse_import',
+        );
+
+        $is_plugin_page = $screen && in_array( $screen->id, $plugin_pages, true );
+
+        // Only load importer JS + nonce on plugin pages AND only for admins.
+        if ( $is_plugin_page && current_user_can( 'manage_options' ) ) {
+            wp_enqueue_script(
+                'sendpulse-email-marketing-newsletter-importer-script',
+                $this->plugin_url . 'assets/js/sp-newsletter-admin-importer.js',
+                array( 'jquery' ),
+                $this->version,
+                true
+            );
+
+            wp_localize_script(
+                'sendpulse-email-marketing-newsletter-importer-script',
+                'sp_admin_params',
+                array(
+                    'ajax_url'    => admin_url( 'admin-ajax.php' ),
+                    '_ajax_nonce' => wp_create_nonce( 'sendpulse_import' ),
+                )
+            );
+        }
+    }
 }

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Add WordPress users to address book.
  *

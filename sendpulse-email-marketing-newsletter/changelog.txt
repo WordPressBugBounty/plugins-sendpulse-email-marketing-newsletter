@@ -73,7 +73,7 @@
 * Fix vendor library crashing on PHP8.3
 
 = 2.2.1 - 29.07.2025 =
-* Removed deprecated PHP code and compatibility with PHP < 7.2
+* Removed deprecated PHP code and compatibility with PHP < 7.1
 * Updated minimum PHP requirement to 7.1 (recommended 8.2+)
 * Improved security by preventing direct file access
 * Updated plugin header and metadata for clarity
