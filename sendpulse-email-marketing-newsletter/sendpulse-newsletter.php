@@ -3,7 +3,7 @@
 	Plugin Name: SendPulse Email Marketing Newsletter
 	Plugin URI: https://wordpress.org/plugins/sendpulse-email-marketing-newsletter/
 	Description: Add e-mail subscription form, send marketing newsletters and create autoresponders.
-	Version: 2.2.2
+	Version: 2.2.3
 	Author: SendPulse
 	Author URI: https://sendpulse.com
 	License:     GPL2
@@ -35,7 +35,7 @@ if ( version_compare( PHP_VERSION, '7.1.0', '<' ) ) {
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-const SP_EMAIL_MARKETING_VERSION = '2.2.2';
+const SP_EMAIL_MARKETING_VERSION = '2.2.3';
 define( 'SP_EMAIL_MARKETING_PLUGIN_BASE_NAME', plugin_basename( __FILE__ ) );
 define( 'SP_EMAIL_MARKETING_PLUGIN_BASE_DIR', plugin_dir_path( __FILE__ ) );
 const SP_EMAIL_MARKETING_PLUGIN_STORAGE_DIR = SP_EMAIL_MARKETING_PLUGIN_BASE_DIR . 'storage/';

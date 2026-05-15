@@ -1,4 +1,8 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 /**
  * Class Send_Pulse_Newsletter_Forms
  */

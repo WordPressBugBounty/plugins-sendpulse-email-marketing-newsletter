@@ -1,4 +1,8 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 /**
  *
  * Class Send_Pulse_Newsletter_Requirement
@@ -78,4 +82,3 @@ class Send_Pulse_Newsletter_Requirement {
 	}
 
 }
-

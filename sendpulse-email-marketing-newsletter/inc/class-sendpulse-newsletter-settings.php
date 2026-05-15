@@ -1,4 +1,8 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 /**
  * Plugin settings class
  *
@@ -37,11 +41,16 @@ class Send_Pulse_Newsletter_Settings {
         try {
             $this->api = new Send_Pulse_Newsletter_API();
 
+            if ( ! $this->api->is_available() ) {
+                $this->error = __( 'SendPulse API is temporarily unavailable. Mailing lists could not be loaded.', 'sendpulse-email-marketing-newsletter' );
+                return;
+            }
+
             if ( 'on' == $this->api->get_option( 'is_subscribe_after_register' ) && empty( $this->api->default_book ) ) {
                 $this->error = __( 'Select a target mailing list and save your settings', 'sendpulse-email-marketing-newsletter' );
             }
 
-        } catch ( Exception $exception ) {
+        } catch ( \Throwable $exception ) {
             $this->error = $exception->getMessage();
         }
     }
@@ -450,10 +459,21 @@ class Send_Pulse_Newsletter_Settings {
         $books = array();
 
         if ( $this->api ) {
-            $response = $this->api->listAddressBooks();
+            $api = $this->api;
+            $response = $api->listAddressBooks();
 
-            if ( is_array( $response ) ) {
+            if ( is_wp_error( $response ) ) {
+                $this->error = __( 'SendPulse API is temporarily unavailable. Mailing lists could not be loaded.', 'sendpulse-email-marketing-newsletter' );
+            } elseif ( ! $api->is_available() ) {
+                $this->error = __( 'SendPulse API is temporarily unavailable. Mailing lists could not be loaded.', 'sendpulse-email-marketing-newsletter' );
+            } elseif ( is_array( $response ) && ! empty( $response ) ) {
                 $books = $response;
+            } elseif ( is_array( $response ) ) {
+                if ( $api->get_last_error() ) {
+                    $this->error = __( 'SendPulse API is temporarily unavailable. Mailing lists could not be loaded.', 'sendpulse-email-marketing-newsletter' );
+                } else {
+                    $this->error = __( 'You have no books to show', 'sendpulse-email-marketing-newsletter' );
+                }
             } elseif ( is_object( $response ) && empty( get_object_vars( $response ) ) ) {
                 $this->error = __( 'You have no books to show', 'sendpulse-email-marketing-newsletter' );
             } else {

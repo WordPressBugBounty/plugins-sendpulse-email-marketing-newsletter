@@ -81,3 +81,11 @@
 * Refined plugin tags for better discoverability
 * Fixed paths and error handling in custom error page template
 * Verified compatibility with WordPress 6.8.2
+
+= 2.2.2 =
+* Maintenance release.
+
+= 2.2.3 =
+* Improved plugin stability when the SendPulse API is temporarily unavailable.
+* Prevented fatal errors caused by unexpected API responses or connection failures.
+* Improved error handling for mailing list loading, AJAX import actions, and user registration subscription.

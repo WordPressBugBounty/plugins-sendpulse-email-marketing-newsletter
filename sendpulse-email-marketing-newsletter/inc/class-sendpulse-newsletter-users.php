@@ -1,10 +1,28 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 /**
  * Add WordPress users to address book.
  *
  * Class Send_Pulse_Newsletter_Users
  */
 class Send_Pulse_Newsletter_Users {
+
+	/**
+	 * Log subscription failures only in debug mode.
+	 *
+	 * @param string $message Log message.
+	 *
+	 * @return void
+	 */
+	protected function log_subscription_error( $message ) {
+		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+			// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+			error_log( '[SendPulse Email Marketing Newsletter] ' . $message );
+		}
+	}
 
 	/**
 	 * Send_Pulse_Newsletter_Users constructor.
@@ -50,7 +68,17 @@ class Send_Pulse_Newsletter_Users {
 	public function subscribe_after_register( $user_id ) {
 		$user = new WP_User( $user_id );
 		$user_ip = self::get_user_ip( $user_id );
-		$api = new Send_Pulse_Newsletter_API();
+		try {
+			$api = new Send_Pulse_Newsletter_API();
+		} catch ( \Throwable $e ) {
+			$this->log_subscription_error( 'Failed to initialize SendPulse API during user registration: ' . $e->getMessage() );
+			return;
+		}
+
+		if ( ! $api->is_available() ) {
+			$this->log_subscription_error( 'SendPulse API is temporarily unavailable during user registration.' );
+			return;
+		}
 
 		$emails = array(
 			array(
@@ -70,15 +98,26 @@ class Send_Pulse_Newsletter_Users {
 			$vars['subscribe_ip'] = $user_ip;
 		}
 
-		$result = $api->add_contact_to_list(
-			$user->user_email,
-			$api->default_book,
-			$vars
-		);
+		try {
+			$result = $api->add_contact_to_list(
+				$user->user_email,
+				$api->default_book,
+				$vars
+			);
+		} catch ( \Throwable $e ) {
+			$this->log_subscription_error( 'Failed to subscribe user after registration: ' . $e->getMessage() );
+			return;
+		}
+
+		if ( is_wp_error( $result ) ) {
+			$this->log_subscription_error( 'Failed to subscribe user after registration: ' . $result->get_error_message() );
+			return;
+		}
 
 		if ( isset( $result->is_error ) && $result->is_error ) {
 			$msg = $result->message ?? __( 'Something went wrong', 'sendpulse-email-marketing-newsletter' );
-			return new WP_Error('sendpulse_error', json_encode($msg));
+			$this->log_subscription_error( 'Failed to subscribe user after registration: ' . wp_json_encode( $msg ) );
+			return;
 		}
 	}
 

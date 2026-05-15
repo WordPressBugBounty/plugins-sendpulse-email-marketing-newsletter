@@ -1,16 +1,20 @@
 jQuery(document).ready(function($) {
-    // Dismiss the notice when the close button is clicked
-    $('.notice-dismiss').on('click', function() {
-        // AJAX request to dismiss the notice
+    $(document).on('click', '.notice-dismiss', function() {
+        var $notice = $(this).closest('.notice');
+        var dismissAction = $notice.data('dismiss-action');
+
+        if (!dismissAction) {
+            return;
+        }
+
         $.ajax({
             url: sp_emp_dismiss_script_vars.ajaxurl,
             type: 'POST',
             data: {
-                action: 'dismiss_sp_emp_file_storage_notice'
+                action: dismissAction
             },
             success: function() {
-                // Hide the notice
-                $('.notice').fadeOut();
+                $notice.fadeOut();
             }
         });
     });

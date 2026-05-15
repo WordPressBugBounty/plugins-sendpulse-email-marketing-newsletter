@@ -1,10 +1,10 @@
 === SendPulse Email Marketing Newsletter ===
 Contributors: SendPulse
 Tags: email marketing, newsletter, subscription form, email optin, autoresponder
-Requires PHP: 7.1
+Requires PHP: 8.0
 Requires at least: 5.7
-Tested up to: 6.8
-Stable tag: 2.2.2
+Tested up to: 6.9
+Stable tag: 2.2.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -52,7 +52,7 @@ You can install [SendPulse Free WebPush plugin](https://wordpress.org/plugins/se
 4. To display your subscription form, use a shortcode (for example `[sendpulse-form id="..."]` where "..." is form id) in editor or place `<?php echo do_shortcode('[sendpulse-form id="..."]')?>` in your themes file.
 
 = Requirement =
-* PHP version >= 7.2+ ([Recommended](https://wordpress.org/about/requirements/) >= 7.2+)
+* PHP version >= 8.0+ ([Recommended](https://wordpress.org/about/requirements/) >= 8.0+)
 
 == Installation ==
 
@@ -65,6 +65,15 @@ You can install [SendPulse Free WebPush plugin](https://wordpress.org/plugins/se
 = How place shortcode in themes file? =
 Shortcode can be used anywhere in the theme templates via do_shortcode function. 
 For example, `<?php echo do_shortcode('[sendpulse-form id="..."]')?>`.
+
+== Changelog ==
+= 2.2.3 =
+* Improved plugin stability when the SendPulse API is temporarily unavailable.
+* Prevented fatal errors caused by unexpected API responses or connection failures.
+* Improved error handling for mailing list loading, AJAX import actions, and user registration subscription.
+
+= 2.2.2 =
+* Maintenance release.
 
 == Screenshots ==
 

@@ -1,5 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Handle ajax actions.
  *
@@ -63,7 +67,22 @@ class Send_Pulse_Newsletter_Ajax {
 			wp_send_json_success( [ 'msg' => implode( "\n", $msg ) ] );
 		}
 
-		$api   = new Send_Pulse_Newsletter_API();
+		try {
+			$api = new Send_Pulse_Newsletter_API();
+		} catch ( \Throwable $e ) {
+			wp_send_json_error(
+				[ 'message' => __( 'SendPulse API is temporarily unavailable. Please try again later.', 'sendpulse-email-marketing-newsletter' ) ],
+				503
+			);
+		}
+
+		if ( ! $api->is_available() ) {
+			wp_send_json_error(
+				[ 'message' => __( 'SendPulse API is temporarily unavailable. Please try again later.', 'sendpulse-email-marketing-newsletter' ) ],
+				503
+			);
+		}
+
 		$users = get_users( [ 'role' => $role ] );
 
 		if ( empty( $users ) ) {
@@ -123,61 +142,89 @@ class Send_Pulse_Newsletter_Ajax {
 			);
 		}
 
-        check_ajax_referer( 'sendpulse_import' );
+		check_ajax_referer( 'sendpulse_import' );
 
-        $api = new Send_Pulse_Newsletter_API();
-        $books = $api->listAddressBooks();
+		$roles = wp_roles()->roles;
+		$formatted_roles = array();
 
-        $roles = wp_roles()->roles;
-        $formatted_roles = array();
+		foreach ( $roles as $key => $role ) {
+			$formatted_roles[] = array(
+				'value' => $key,
+				'label' => $role['name'],
+			);
+		}
 
-        foreach ( $roles as $key => $role ) {
-            $formatted_roles[] = array(
-                'value' => $key,
-                'label' => $role['name'],
-            );
-        }
+		try {
+			$api = new Send_Pulse_Newsletter_API();
+			$books = $api->listAddressBooks();
+		} catch ( \Throwable $e ) {
+			wp_send_json_error(
+				[ 'message' => __( 'SendPulse API is temporarily unavailable. Mailing lists could not be loaded.', 'sendpulse-email-marketing-newsletter' ) ],
+				503
+			);
+		}
 
-        wp_send_json_success( array(
-            'books' => $books,
-            'roles' => $formatted_roles,
-        ) );
-    }
+		if ( ! $api->is_available() ) {
+			// Keep a successful fallback payload so callers can still render roles.
+			wp_send_json_success( array(
+				'books' => [],
+				'roles' => $formatted_roles,
+				'message' => __( 'SendPulse API is temporarily unavailable. Mailing lists could not be loaded.', 'sendpulse-email-marketing-newsletter' ),
+			) );
+		}
 
-    public function ajax_get_import_data() {
-	    if ( ! current_user_can( 'manage_options' ) ) {
-		    wp_send_json_error(
-			    [ 'message' => __( 'You are not allowed to perform this action.', 'sendpulse-email-marketing-newsletter' ) ],
-			    403
-		    );
-	    }
+		wp_send_json_success( array(
+			'books' => $books,
+			'roles' => $formatted_roles,
+		) );
+	}
 
-        check_ajax_referer( 'sendpulse_import' );
+	public function ajax_get_import_data() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error(
+				[ 'message' => __( 'You are not allowed to perform this action.', 'sendpulse-email-marketing-newsletter' ) ],
+				403
+			);
+		}
 
-        $books = [];
-        $roles = [];
+		check_ajax_referer( 'sendpulse_import' );
 
-        try {
-            $api = new Send_Pulse_Newsletter_API();
-            $books = $api->get_books(); // Returns array with ['id', 'name']
-        } catch ( Exception $e ) {
-            wp_send_json_error( [ 'message' => 'Failed to fetch books: ' . $e->getMessage() ] );
-        }
+		$books = [];
+		$roles = [];
 
-        // Get all roles from WP
-        global $wp_roles;
-        foreach ( $wp_roles->roles as $key => $role ) {
-            $roles[] = [
-                'value' => $key,
-                'label' => $role['name']
-            ];
-        }
+		// Get all roles from WP
+		global $wp_roles;
+		foreach ( $wp_roles->roles as $key => $role ) {
+			$roles[] = [
+				'value' => $key,
+				'label' => $role['name']
+			];
+		}
 
-        wp_send_json_success( [
-            'books' => $books,
-            'roles' => $roles
-        ] );
-    }
+		try {
+			$api = new Send_Pulse_Newsletter_API();
+			$books = $api->get_books(); // Returns array with ['id', 'name']
+		} catch ( \Throwable $e ) {
+			wp_send_json_error(
+				[ 'message' => __( 'SendPulse API is temporarily unavailable. Mailing lists could not be loaded.', 'sendpulse-email-marketing-newsletter' ) ],
+				503
+			);
+		}
+
+		if ( ! $api->is_available() ) {
+			// Keep a successful fallback payload so callers can still render roles.
+			wp_send_json_success( [
+				'books' => [],
+				'roles' => $roles,
+				'message' => __( 'SendPulse API is temporarily unavailable. Mailing lists could not be loaded.', 'sendpulse-email-marketing-newsletter' ),
+			] );
+		}
+
+		wp_send_json_success( [
+			'books' => $books,
+			'roles' => $roles
+		] );
+	}
 
     public function get_import_log() {
 	    if ( ! current_user_can( 'manage_options' ) ) {
