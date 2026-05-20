@@ -30,7 +30,6 @@ class Send_Pulse_Newsletter_Ajax {
 	 */
 	public function __construct() {
 		add_action( 'wp_ajax_sendpulse_import', [ $this, 'import' ] );
-        add_action( 'wp_ajax_sendpulse_get_import_data', [ $this, 'get_import_data' ] );
         add_action( 'wp_ajax_sendpulse_get_import_data', [ $this, 'ajax_get_import_data' ] );
         add_action( 'wp_ajax_sendpulse_get_import_log',  [ $this, 'get_import_log' ] );
     }
@@ -132,51 +131,6 @@ class Send_Pulse_Newsletter_Ajax {
 				'msg' => __( 'Import finished. You can check the log.', 'sendpulse-email-marketing-newsletter' ),
 			]
 		);
-	}
-
-	public function get_import_data() {
-		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error(
-				[ 'message' => __( 'You are not allowed to perform this action.', 'sendpulse-email-marketing-newsletter' ) ],
-				403
-			);
-		}
-
-		check_ajax_referer( 'sendpulse_import' );
-
-		$roles = wp_roles()->roles;
-		$formatted_roles = array();
-
-		foreach ( $roles as $key => $role ) {
-			$formatted_roles[] = array(
-				'value' => $key,
-				'label' => $role['name'],
-			);
-		}
-
-		try {
-			$api = new Send_Pulse_Newsletter_API();
-			$books = $api->listAddressBooks();
-		} catch ( \Throwable $e ) {
-			wp_send_json_error(
-				[ 'message' => __( 'SendPulse API is temporarily unavailable. Mailing lists could not be loaded.', 'sendpulse-email-marketing-newsletter' ) ],
-				503
-			);
-		}
-
-		if ( ! $api->is_available() ) {
-			// Keep a successful fallback payload so callers can still render roles.
-			wp_send_json_success( array(
-				'books' => [],
-				'roles' => $formatted_roles,
-				'message' => __( 'SendPulse API is temporarily unavailable. Mailing lists could not be loaded.', 'sendpulse-email-marketing-newsletter' ),
-			) );
-		}
-
-		wp_send_json_success( array(
-			'books' => $books,
-			'roles' => $formatted_roles,
-		) );
 	}
 
 	public function ajax_get_import_data() {

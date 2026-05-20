@@ -38,7 +38,7 @@ class Send_Pulse_Newsletter_Requirement {
 	 *
 	 */
 	public function php_check() {
-		$this->success = version_compare( PHP_VERSION, '5.2.4', '>=' );
+		$this->success = version_compare( PHP_VERSION, '8.0.0', '>=' );
 		$this->error_msg[] = 'php';
 	}
 
@@ -67,7 +67,7 @@ class Send_Pulse_Newsletter_Requirement {
 		$message = '';
 
 		if ( in_array( 'php', $this->error_msg ) ) {
-			$message = sprintf( '<p><strong>%s</strong></p><p>%s</p>', __( "We've noticed that you're running an outdated version of PHP and plugin \"SendPulse Email Marketing Newsletter\" can't run.", 'sendpulse-email-marketing-newsletter' ), __( "Ask you hosting <a href=\"https://wordpress.org/about/requirements/\">update PHP</a>.", 'sendpulse-email-marketing-newsletter' ) );
+			$message = sprintf( '<p><strong>%s</strong></p><p>%s</p>', __( 'The "SendPulse Email Marketing Newsletter" plugin requires PHP 8.0 or higher and cannot run on this site.', 'sendpulse-email-marketing-newsletter' ), __( 'Please ask your hosting provider to <a href="https://wordpress.org/about/requirements/">upgrade PHP</a>.', 'sendpulse-email-marketing-newsletter' ) );
 		}
 
 		printf( '<div class="notice notice-error">%s</div>', wp_kses_post( $message ) );

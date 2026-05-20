@@ -36,13 +36,6 @@ class Send_Pulse_Newsletter_Loader {
 	 * Include libraries and additional class.
 	 */
 	protected function inc() {
-		$vendor_dir = dirname( __FILE__ ) . '/../vendor/';
-		include_once( $vendor_dir . 'sendpulse/rest-api/src/Contracts/TokenStorageInterface.php' );
-        include_once( $vendor_dir . 'sendpulse/rest-api/src/Contracts/ApiInterface.php' );
-		include_once( $vendor_dir . 'sendpulse/rest-api/src/Storage/FileStorage.php' );
-		include_once( $vendor_dir . 'sendpulse/rest-api/src/Storage/SessionStorage.php' );
-        include_once( $vendor_dir . 'sendpulse/rest-api/src/ApiClient.php' );
-        include_once( $vendor_dir . 'sendpulse/rest-api/src/ApiClientException.php' );
 		include_once( 'class-senpulse-newsletter-forms.php' );
 		include_once( 'class-sendpulse-newsletter-api.php' );
 		include_once( 'class-sendpulse-newsletter-settings.php' );

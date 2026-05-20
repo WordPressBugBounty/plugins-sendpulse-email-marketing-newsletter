@@ -4,7 +4,7 @@ Tags: email marketing, newsletter, subscription form, email optin, autoresponder
 Requires PHP: 8.0
 Requires at least: 5.7
 Tested up to: 6.9
-Stable tag: 2.2.3
+Stable tag: 2.2.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -67,6 +67,13 @@ Shortcode can be used anywhere in the theme templates via do_shortcode function.
 For example, `<?php echo do_shortcode('[sendpulse-form id="..."]')?>`.
 
 == Changelog ==
+= 2.2.4 =
+* Removed legacy layer/packages
+* Cleaned legacy plugin assets
+* Removed unused legacy hooks and duplicate AJAX registrations
+* Unified minimum PHP requirement to PHP 8.0 across the plugin
+* Improved overall plugin maintainability
+
 = 2.2.3 =
 * Improved plugin stability when the SendPulse API is temporarily unavailable.
 * Prevented fatal errors caused by unexpected API responses or connection failures.

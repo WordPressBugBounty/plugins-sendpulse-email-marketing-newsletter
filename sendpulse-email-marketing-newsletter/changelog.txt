@@ -89,3 +89,10 @@
 * Improved plugin stability when the SendPulse API is temporarily unavailable.
 * Prevented fatal errors caused by unexpected API responses or connection failures.
 * Improved error handling for mailing list loading, AJAX import actions, and user registration subscription.
+
+= 2.2.4 =
+* Removed legacy layer/packages
+* Cleaned legacy plugin assets
+* Removed unused legacy hooks and duplicate AJAX registrations
+* Unified minimum PHP requirement to PHP 8.0 across the plugin
+* Improved overall plugin maintainability

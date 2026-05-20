@@ -9,6 +9,12 @@
                 "url": "https://github.com/sendpulse/sendpulse-rest-api-php.git",
                 "reference": "457ca31c0ff3a3f849182d053d50928085d432ae"
             },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sendpulse/sendpulse-rest-api-php/zipball/457ca31c0ff3a3f849182d053d50928085d432ae",
+                "reference": "457ca31c0ff3a3f849182d053d50928085d432ae",
+                "shasum": ""
+            },
             "require": {
                 "ext-curl": "*",
                 "ext-json": "*",
@@ -16,12 +22,13 @@
             },
             "time": "2024-06-03T10:49:25+00:00",
             "type": "library",
-            "installation-source": "source",
+            "installation-source": "dist",
             "autoload": {
                 "psr-4": {
                     "Sendpulse\\RestApi\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -45,9 +52,13 @@
                 "rest",
                 "sendpulse"
             ],
+            "support": {
+                "issues": "https://github.com/sendpulse/sendpulse-rest-api-php/issues",
+                "source": "https://github.com/sendpulse/sendpulse-rest-api-php/tree/2.0.1.2"
+            },
             "install-path": "../sendpulse/rest-api"
         }
     ],
-    "dev": true,
+    "dev": false,
     "dev-package-names": []
 }

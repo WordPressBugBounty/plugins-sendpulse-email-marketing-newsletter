@@ -3,11 +3,12 @@
 	Plugin Name: SendPulse Email Marketing Newsletter
 	Plugin URI: https://wordpress.org/plugins/sendpulse-email-marketing-newsletter/
 	Description: Add e-mail subscription form, send marketing newsletters and create autoresponders.
-	Version: 2.2.3
+	Version: 2.2.4
 	Author: SendPulse
 	Author URI: https://sendpulse.com
 	License:     GPL2
 	License URI: https://www.gnu.org/licenses/gpl-2.0.html
+	Requires PHP: 8.0
 	Text Domain: sendpulse-email-marketing-newsletter
 	Domain Path: /languages
  */
@@ -19,12 +20,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Minimum PHP version check.
  */
-if ( version_compare( PHP_VERSION, '7.1.0', '<' ) ) {
+if ( version_compare( PHP_VERSION, '8.0.0', '<' ) ) {
 	if ( is_admin() ) {
 		require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		deactivate_plugins( plugin_basename( __FILE__ ) );
 		wp_die(
-			esc_html__( 'The "SendPulse Email Marketing Newsletter" plugin requires PHP version 7.1.0 or higher. Please upgrade your PHP version.', 'sendpulse-email-marketing-newsletter' ),
+			esc_html__( 'The "SendPulse Email Marketing Newsletter" plugin requires PHP version 8.0 or higher. Please upgrade your PHP version.', 'sendpulse-email-marketing-newsletter' ),
 			esc_html__( 'Plugin Incompatible', 'sendpulse-email-marketing-newsletter' ),
 			array( 'back_link' => true )
 		);
@@ -35,7 +36,7 @@ if ( version_compare( PHP_VERSION, '7.1.0', '<' ) ) {
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-const SP_EMAIL_MARKETING_VERSION = '2.2.3';
+const SP_EMAIL_MARKETING_VERSION = '2.2.4';
 define( 'SP_EMAIL_MARKETING_PLUGIN_BASE_NAME', plugin_basename( __FILE__ ) );
 define( 'SP_EMAIL_MARKETING_PLUGIN_BASE_DIR', plugin_dir_path( __FILE__ ) );
 const SP_EMAIL_MARKETING_PLUGIN_STORAGE_DIR = SP_EMAIL_MARKETING_PLUGIN_BASE_DIR . 'storage/';

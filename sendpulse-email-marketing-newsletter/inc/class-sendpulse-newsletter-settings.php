@@ -30,8 +30,6 @@ class Send_Pulse_Newsletter_Settings {
     public function __construct() {
         add_action( 'admin_init', array( $this, 'admin_init' ) );
         add_action( 'admin_menu', array( $this, 'admin_menu' ) );
-        add_action( 'wsa_form_top_sp_import_setting', array( $this, 'start_import_controls' ) );
-        add_action( 'wsa_form_bottom_sp_import_setting', array( $this, 'end_import_controls' ) );
     }
 
     /**
@@ -483,31 +481,6 @@ class Send_Pulse_Newsletter_Settings {
 
         return $books;
     }
-
-    public function start_import_controls() { ?>
-        <div class="sp-import-controls">
-    <?php }
-
-    public function end_import_controls() {
-	    echo wp_kses_post(
-		    get_submit_button(
-			    __( 'Start import', 'sendpulse-email-marketing-newsletter' ),
-			    'primary large',
-			    'sp-import',
-			    true,
-			    array(
-				    'data-_ajax_nonce' => wp_create_nonce( 'sendpulse_import' ),
-				    'data-action'      => 'sendpulse_import'
-			    )
-		    )
-	    );
-        ?>
-
-        <textarea rows="5" cols="55" class="sp-import-log" id="sp-import-log"
-                  title="<?php esc_attr_e( 'Import Log', 'sendpulse-email-marketing-newsletter' ); ?>"></textarea>
-        </div>
-
-    <?php }
 
 }
 
