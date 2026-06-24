@@ -3,8 +3,8 @@ Contributors: SendPulse
 Tags: email marketing, newsletter, subscription form, email optin, autoresponder
 Requires PHP: 8.0
 Requires at least: 5.7
-Tested up to: 6.9
-Stable tag: 2.2.4
+Tested up to: 7.0
+Stable tag: 2.2.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -66,7 +66,50 @@ You can install [SendPulse Free WebPush plugin](https://wordpress.org/plugins/se
 Shortcode can be used anywhere in the theme templates via do_shortcode function. 
 For example, `<?php echo do_shortcode('[sendpulse-form id="..."]')?>`.
 
+= Why is the SendPulse subscription form not appearing on my website? =
+If the subscription form does not appear on your website, the issue is often caused by frontend optimization plugins.
+
+Many performance plugins (such as WP Rocket, Autoptimize, LiteSpeed Cache, Fast Velocity Minify, etc.) modify how JavaScript is loaded by enabling features like:
+- JavaScript minification
+- JavaScript combination (bundling)
+- Deferred or delayed script execution
+- JavaScript optimization and aggregation
+
+These optimizations can change the loading order or execution timing of third-party scripts and may prevent SendPulse subscription forms from loading correctly.
+
+How to fix:
+1. Temporarily disable JavaScript optimization options and check whether the subscription form starts working.
+2. If it does, re-enable options one by one to identify the conflicting setting.
+3. Clear all caches after changing optimization settings.
+
+For WP Rocket users:
+- Disable the "Minify JavaScript files" option
+- Disable the "Combine JavaScript files" option
+- Disable the "Delay JavaScript Execution" option (if enabled)
+- Clear the cache after making changes
+
+In some cases, excluding SendPulse resources from optimization may also help.
+
+Recommended exclusions:
+- static-login.sendpulse.com
+- web.webformscr.com
+- /apps/fc3/build/loader.js
+
+These resources are required for loading and rendering SendPulse subscription forms.
+
+Note:
+JavaScript combination is often unnecessary on modern HTTP/2 and HTTP/3 websites and may cause compatibility issues with third-party services such as embedded forms, chat widgets, analytics tools, and marketing integrations.
+
 == Changelog ==
+= 2.2.5 =
+* Improved the plugin admin UI and overall user experience.
+* Added visual indicators for external documentation links.
+* Expanded the Documentation section with troubleshooting guidance for JavaScript optimization, caching, and performance plugins.
+* Improved onboarding and setup instructions inside the plugin.
+* Updated and synchronized plugin translations.
+* Refined interface terminology and help texts for improved consistency.
+* Minor fixes and usability improvements.
+
 = 2.2.4 =
 * Removed legacy layer/packages
 * Cleaned legacy plugin assets
@@ -83,7 +126,6 @@ For example, `<?php echo do_shortcode('[sendpulse-form id="..."]')?>`.
 * Maintenance release.
 
 == Screenshots ==
-
 1. SendPulse Forms table view.
 2. Form editor.
 3. API setting.

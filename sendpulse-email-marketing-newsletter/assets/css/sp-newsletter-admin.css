@@ -73,3 +73,332 @@
     color: #555;
     margin-top: 5px;
 }
+
+.sp-newsletter-docs-layout {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 24px;
+    align-items: flex-start;
+    margin-top: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.sp-newsletter-docs-main {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: none;
+    margin: 0;
+}
+
+.sp-newsletter-docs-sidebar {
+    flex: 0 0 320px;
+    width: 320px;
+    margin: 0;
+}
+
+.sp-newsletter-docs-content {
+    padding: 20px 24px;
+}
+
+.sp-newsletter-docs-content p {
+    max-width: 760px;
+}
+
+.sp-newsletter-docs-section {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #dcdcde;
+}
+
+.sp-newsletter-docs-section:first-of-type {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+}
+
+.sp-newsletter-docs-content ul,
+.sp-newsletter-docs-links {
+    list-style: disc;
+    margin: 0 0 16px 22px;
+    padding: 0;
+}
+
+.sp-newsletter-docs-content li,
+.sp-newsletter-docs-links li {
+    margin-bottom: 8px;
+}
+
+.sp-newsletter-docs-links {
+    margin-left: 0;
+    list-style: none;
+}
+
+.sp-newsletter-docs-link-item,
+.sp-newsletter-import-link-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #f0f0f1;
+}
+
+.sp-newsletter-docs-link-item:last-child,
+.sp-newsletter-import-link-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.sp-newsletter-docs-link-item a,
+.sp-newsletter-import-link-item a {
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.sp-newsletter-docs-link-icon,
+.sp-newsletter-import-link-icon {
+    color: #3858e9;
+    margin-top: 2px;
+    flex: 0 0 20px;
+}
+
+.sp-newsletter-docs-link-content,
+.sp-newsletter-import-link-content {
+    min-width: 0;
+}
+
+.sp-newsletter-docs-link-description,
+.sp-newsletter-import-link-description {
+    margin: 6px 0 0;
+    color: #50575e;
+}
+
+.sp-newsletter-docs-content code {
+    font-size: 13px;
+}
+
+.sp-newsletter-docs-content .sp-newsletter-docs-checklist {
+    list-style: none;
+    margin: 0 0 16px;
+    margin-left: 0;
+    padding: 0;
+    padding-left: 0;
+}
+
+.sp-newsletter-docs-content .sp-newsletter-docs-checklist li {
+    list-style: none;
+    position: relative;
+    margin: 0 0 12px;
+    padding-left: 28px;
+}
+
+.sp-newsletter-docs-content .sp-newsletter-docs-checklist li::before {
+    content: "\2713";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #008a20;
+    font-weight: 700;
+}
+
+.sp-newsletter-docs-info-block {
+    margin: 16px 0 0;
+}
+
+.sp-newsletter-docs-info-block h4 {
+    margin: 0 0 8px;
+    font-size: 14px;
+}
+
+.sp-newsletter-docs-code-block {
+    margin: 12px 0;
+    padding: 12px 14px;
+    background: #f6f7f7;
+    border: 1px solid #dcdcde;
+    border-radius: 4px;
+    overflow-x: auto;
+}
+
+.sp-newsletter-docs-code-block code {
+    display: block;
+    white-space: pre;
+    font-size: 13px;
+}
+
+.sp-newsletter-docs-sidebar .inside {
+    padding: 16px 20px;
+}
+
+.sp-newsletter-docs-sidebar h2 {
+    margin-top: 0;
+}
+
+.sp-newsletter-checkbox-setting {
+    margin: 2px 0 0;
+}
+
+.sp-newsletter-checkbox-setting__label {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.sp-newsletter-checkbox-setting__label input[type="checkbox"] {
+    margin: 2px 0 0;
+}
+
+.sp-newsletter-checkbox-setting__help {
+    margin-left: 24px;
+}
+
+.sp-newsletter-import-defaults-help {
+    margin: 8px 0 16px;
+}
+
+.sp-newsletter-import-defaults-help p {
+    margin: 0 0 6px;
+}
+
+.sp-newsletter-import-defaults-help p:last-child {
+    margin-bottom: 0;
+}
+
+.sp-newsletter-api-settings-table #default_book {
+    width: 25em;
+    max-width: 100%;
+}
+
+.sp-newsletter-import-defaults-table th {
+    width: 280px;
+}
+
+.sp-newsletter-import-defaults-table select {
+    width: 28em;
+    max-width: 100%;
+}
+
+.sp-newsletter-import-layout {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 24px;
+    align-items: flex-start;
+    margin-top: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.sp-newsletter-import-main {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: none;
+}
+
+.sp-newsletter-import-sidebar {
+    flex: 0 0 320px;
+    width: 320px;
+    margin: 0;
+}
+
+.sp-newsletter-import-card {
+    margin: 0 0 20px;
+}
+
+.sp-newsletter-import-card .inside {
+    padding: 16px 20px;
+}
+
+.sp-newsletter-import-card h2,
+.sp-newsletter-import-sidebar h2 {
+    margin-top: 0;
+}
+
+.sp-newsletter-import-card .notice.inline {
+    margin: 8px 0 0;
+}
+
+.sp-newsletter-import-form {
+    max-width: 760px;
+}
+
+.sp-newsletter-import-form-row {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.sp-newsletter-import-form-row:last-child {
+    margin-bottom: 0;
+}
+
+.sp-newsletter-import-form-label label {
+    display: inline-block;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.sp-newsletter-import-form-control select {
+    width: 28em;
+    max-width: 100%;
+}
+
+.sp-newsletter-import-form-actions {
+    margin-left: 196px;
+}
+
+.sp-newsletter-import-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+@media (max-width: 1200px) {
+    .sp-newsletter-docs-layout {
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+    .sp-newsletter-import-layout {
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+    .sp-newsletter-docs-main,
+    .sp-newsletter-docs-sidebar {
+        max-width: 860px;
+        width: 100%;
+        flex: 1 1 auto;
+    }
+
+    .sp-newsletter-docs-sidebar {
+        flex-basis: auto;
+    }
+
+    .sp-newsletter-import-main,
+    .sp-newsletter-import-sidebar {
+        max-width: 860px;
+        width: 100%;
+        flex: 1 1 auto;
+    }
+
+    .sp-newsletter-import-sidebar {
+        flex-basis: auto;
+    }
+
+    .sp-newsletter-import-form-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        align-items: start;
+    }
+
+    .sp-newsletter-import-form-actions {
+        margin-left: 0;
+    }
+}

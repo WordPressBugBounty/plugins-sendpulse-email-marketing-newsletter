@@ -1,338 +1,736 @@
-# Copyright (C) 2022 SendPulse Email Marketing Newsletter
-# This file is distributed under the same license as the SendPulse Email Marketing Newsletter package.
-#, fuzzy
+# Copyright (C) 2026 SendPulse
+# This file is distributed under the GPL2.
 msgid ""
 msgstr ""
-"Project-Id-Version: SendPulse Email Marketing Newsletter\n"
-"POT-Creation-Date: 2023-07-14 16:48+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"Project-Id-Version: SendPulse Email Marketing Newsletter 2.2.5\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/sendpulse-email-marketing-newsletter\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"X-Poedit-Basepath: ..\n"
-"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;"
-"_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;"
-"esc_html_e;esc_html_x:1,2c\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 3.0.1\n"
-"X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPathExcluded-0: *.js\n"
+"POT-Creation-Date: 2026-06-24T19:06:54+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: sendpulse-email-marketing-newsletter\n"
 
-#: custom-error-page.php:18
-msgid "\"SendPulse Email Marketing Newsletter\" Plugin cannot be activated."
+#. Plugin Name of the plugin
+#: sendpulse-newsletter.php:3
+msgid "SendPulse Email Marketing Newsletter"
 msgstr ""
 
-#: custom-error-page.php:19
-msgid ""
-"Something wrong with your hosting setup. Please, ask hosting team to check "
-"for correct permissions for WordPress folders, owner and group."
+#. Plugin URI of the plugin
+#: sendpulse-newsletter.php:4
+msgid "https://wordpress.org/plugins/sendpulse-email-marketing-newsletter/"
 msgstr ""
 
-#: custom-error-page.php:20
-msgid "Also check for error messages at server log files."
+#. Description of the plugin
+#: sendpulse-newsletter.php:5
+msgid "Add e-mail subscription form, send marketing newsletters and create autoresponders."
 msgstr ""
 
-#: custom-error-page.php:23
-#, php-format
-msgid ""
-"Please make sure the \"sendpulse-email-marketing-newsletter/%s\", folder is "
-"writable, has the correct permissions %s and group set to %s ."
+#. Author of the plugin
+#: sendpulse-newsletter.php:7
+msgid "SendPulse"
 msgstr ""
 
-#: custom-error-page.php:24
-msgid ""
-"If you cannot change permissions on your own, ask your hosting company for "
-"help."
-msgstr ""
-
-#: custom-error-page.php:26
-msgid ""
-"\"SendPulse Email Marketing Newsletter\" Plugin will be deactivated to "
-"prevent your site from crashing."
+#. Author URI of the plugin
+#: sendpulse-newsletter.php:8
+msgid "https://sendpulse.com"
 msgstr ""
 
 #: custom-error-page.php:28
-msgid "You will be redirected in "
+msgid "\"SendPulse Email Marketing Newsletter\" plugin could not be activated."
 msgstr ""
 
-#: custom-error-page.php:29
-msgid "seconds back to your plugins page."
+#. translators: 1: storage directory name, 2: permissions, 3: web server group/user
+#: custom-error-page.php:41
+#, php-format
+msgid "The plugin requires the %1$s directory to be writable (permissions %2$s, group %3$s). Please fix the file permissions and try activating the plugin again."
 msgstr ""
 
-#: inc/class-sendpulse-newsletter-ajax.php:35
+#: custom-error-page.php:58
+msgid "You will be redirected back to the Plugins page automatically."
+msgstr ""
+
+#. translators: %d: number of seconds before redirect.
+#: custom-error-page.php:69
+#, php-format
+msgid "Redirecting in %d seconds…"
+msgstr ""
+
+#: custom-error-page.php:81
+msgid "Go to Plugins page now"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-ajax.php:43
+#: inc/class-sendpulse-newsletter-ajax.php:139
+#: inc/class-sendpulse-newsletter-ajax.php:186
+msgid "You are not allowed to perform this action."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-ajax.php:50
+msgid "Import started"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-ajax.php:59
 msgid "Please, select Address Book"
 msgstr ""
 
-#: inc/class-sendpulse-newsletter-ajax.php:39
+#: inc/class-sendpulse-newsletter-ajax.php:62
 msgid "Please, select Users Role"
 msgstr ""
 
-#: inc/class-sendpulse-newsletter-ajax.php:44
-msgid "Import start"
-msgstr ""
-
 #: inc/class-sendpulse-newsletter-ajax.php:73
-msgid "Add user"
+#: inc/class-sendpulse-newsletter-ajax.php:80
+msgid "SendPulse API is temporarily unavailable. Please try again later."
 msgstr ""
 
-#: inc/class-sendpulse-newsletter-ajax.php:79
-msgid "Something went wrong. Import unsuccessful"
+#: inc/class-sendpulse-newsletter-ajax.php:88
+msgid "No users found with selected role."
 msgstr ""
 
-#: inc/class-sendpulse-newsletter-ajax.php:83
+#. translators: %1$s: user email, %2$s: user display name
+#: inc/class-sendpulse-newsletter-ajax.php:102
+#, php-format
+msgid "Adding user: %1$s (%2$s)"
+msgstr ""
+
+#. translators: %1$s: user email, %2$s: error message
+#: inc/class-sendpulse-newsletter-ajax.php:112
+#, php-format
+msgid "Error adding %1$s: %2$s"
+msgstr ""
+
+#. translators: %s: user email
+#: inc/class-sendpulse-newsletter-ajax.php:119
+#, php-format
+msgid "Successfully added %s"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-ajax.php:126
 msgid "Import finished"
 msgstr ""
 
-#: inc/class-sendpulse-newsletter-api.php:78
-msgid ""
-"The \"SendPulse Email Marketing Newsletter\" plugin is activated in safe "
-"mode with the SessionStorage feature enabled. The feature stores data only "
-"for the time of current session."
+#: inc/class-sendpulse-newsletter-ajax.php:131
+msgid "Import finished. You can check the log."
 msgstr ""
 
-#: inc/class-sendpulse-newsletter-api.php:79
-msgid ""
-"To use the file storage for data, change the directory rights in the plugin "
-"storage folder to 775 (/wp-content/plugins/sendpulse-email-marketing-"
-"newsletter/storage). "
+#: inc/class-sendpulse-newsletter-ajax.php:163
+#: inc/class-sendpulse-newsletter-ajax.php:173
+#: inc/class-sendpulse-newsletter-settings.php:43
+#: inc/class-sendpulse-newsletter-settings.php:844
+#: inc/class-sendpulse-newsletter-settings.php:846
+#: inc/class-sendpulse-newsletter-settings.php:851
+msgid "SendPulse API is temporarily unavailable. Mailing lists could not be loaded."
 msgstr ""
 
-#: inc/class-sendpulse-newsletter-api.php:80
-msgid ""
-"You should also make sure that the owner or group is set as www-data for the "
-"plugin to save data to the folder. "
+#: inc/class-sendpulse-newsletter-api.php:116
+#: inc/class-sendpulse-newsletter-api.php:155
+msgid "SendPulse API is temporarily unavailable."
 msgstr ""
 
-#: inc/class-sendpulse-newsletter-api.php:81
-msgid ""
-"If you are using Docker, check the relevant resources on setting up the "
-"environment or contact a dedicated tech specialist."
+#: inc/class-sendpulse-newsletter-api.php:190
+msgid "The \"SendPulse Email Marketing Newsletter\" plugin is activated in safe mode with the SessionStorage feature enabled."
 msgstr ""
 
-#: inc/class-sendpulse-newsletter-api.php:82
-msgid ""
-"It is recommended to use only SessionStorage for blogs built with wordpress."
-"com. SessionStorage works same as FileStorage."
+#: inc/class-sendpulse-newsletter-api.php:191
+msgid "To use file storage, change directory rights to 775: /storage."
 msgstr ""
 
-#: inc/class-sendpulse-newsletter-api.php:83
-#: inc/class-sendpulse-newsletter-api.php:105
-msgid ""
-"You can close this notification by clicking the close button and it will "
-"never show up again."
+#: inc/class-sendpulse-newsletter-api.php:192
+msgid "Ensure owner or group is www-data."
 msgstr ""
 
-#: inc/class-sendpulse-newsletter-api.php:84
-#: inc/class-sendpulse-newsletter-api.php:106
+#: inc/class-sendpulse-newsletter-api.php:193
+msgid "If using Docker, check file permissions or consult your sysadmin."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-api.php:194
+msgid "Use only SessionStorage on wordpress.com sites."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-api.php:195
+#: inc/class-sendpulse-newsletter-api.php:206
+msgid "You can close this notification."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-api.php:196
+#: inc/class-sendpulse-newsletter-api.php:207
 msgid "Dismiss this notification and never show it again."
 msgstr ""
 
-#: inc/class-sendpulse-newsletter-api.php:104
-msgid ""
-"The \"SendPulse Email Marketing Newsletter\" plugin has been successfully "
-"activated in normal mode with the FileStorage feature enabled."
+#: inc/class-sendpulse-newsletter-api.php:205
+msgid "The \"SendPulse Email Marketing Newsletter\" plugin is activated in normal mode using FileStorage."
 msgstr ""
 
-#: inc/class-sendpulse-newsletter-settings.php:51
-msgid "Select book for new users and save options"
+#: inc/class-sendpulse-newsletter-settings.php:48
+msgid "Select a target mailing list and save your settings"
 msgstr ""
 
-#: inc/class-sendpulse-newsletter-settings.php:87
-#: inc/class-sendpulse-newsletter-settings.php:88
-msgid "Settings"
+#: inc/class-sendpulse-newsletter-settings.php:179
+msgid "Helpful links:"
 msgstr ""
 
-#: inc/class-sendpulse-newsletter-settings.php:102
-msgid "API Settings"
-msgstr ""
-
-#: inc/class-sendpulse-newsletter-settings.php:106
-msgid "Import"
-msgstr ""
-
-#: inc/class-sendpulse-newsletter-settings.php:123
-#: inc/class-sendpulse-newsletter-settings.php:125
-msgid "Client ID"
-msgstr ""
-
-#: inc/class-sendpulse-newsletter-settings.php:124
-#: inc/class-sendpulse-newsletter-settings.php:133
-msgid "Get from https://login.sendpulse.com/settings/"
-msgstr ""
-
-#: inc/class-sendpulse-newsletter-settings.php:132
-#: inc/class-sendpulse-newsletter-settings.php:134
-msgid "Client Secret"
-msgstr ""
-
-#: inc/class-sendpulse-newsletter-settings.php:146
-msgid "Subscribe user after register?"
-msgstr ""
-
-#: inc/class-sendpulse-newsletter-settings.php:147
-msgid "Add all new Wordpress users to selected list"
-msgstr ""
-
-#: inc/class-sendpulse-newsletter-settings.php:160
-msgid "Address Book for new users"
-msgstr ""
-
-#: inc/class-sendpulse-newsletter-settings.php:161
-msgid "Address Book for subscribe user after register"
+#: inc/class-sendpulse-newsletter-settings.php:181
+msgid "How to find your client ID and secret key"
 msgstr ""
 
 #: inc/class-sendpulse-newsletter-settings.php:183
-msgid "Import to Address Book"
+#: inc/class-sendpulse-newsletter-settings.php:533
+msgid "SendPulse API settings"
 msgstr ""
 
-#: inc/class-sendpulse-newsletter-settings.php:184
-msgid "Address Book for wordpress users import"
-msgstr ""
-
-#: inc/class-sendpulse-newsletter-settings.php:191
-msgid "Import Users Group"
+#: inc/class-sendpulse-newsletter-settings.php:190
+msgid "Requires WordPress user registration to be enabled."
 msgstr ""
 
 #: inc/class-sendpulse-newsletter-settings.php:192
-msgid "Users Group that will be imported"
+msgid "Learn more"
 msgstr ""
 
-#: inc/class-sendpulse-newsletter-settings.php:255
-msgid "Error API. Please try again later"
+#: inc/class-sendpulse-newsletter-settings.php:229
+#: inc/class-sendpulse-newsletter-settings.php:230
+#: inc/class-sendpulse-newsletter-settings.php:469
+#: inc/class-sendpulse-newsletter-settings.php:504
+msgid "Settings"
 msgstr ""
 
-#: inc/class-sendpulse-newsletter-settings.php:268
-msgid "Start import"
+#: inc/class-sendpulse-newsletter-settings.php:239
+#: inc/class-sendpulse-newsletter-settings.php:240
+#: inc/class-sendpulse-newsletter-settings.php:556
+#: inc/class-sendpulse-newsletter-settings.php:740
+msgid "User contact import"
 msgstr ""
 
-#: inc/class-sendpulse-newsletter-settings.php:274
+#: inc/class-sendpulse-newsletter-settings.php:254
+#: inc/class-sendpulse-newsletter-settings.php:385
+msgid "API Settings"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:258
+#: inc/class-sendpulse-newsletter-settings.php:400
+#: inc/class-sendpulse-newsletter-settings.php:475
+#: inc/class-sendpulse-newsletter-settings.php:551
+#: inc/class-sendpulse-newsletter-settings.php:729
+msgid "Import Defaults"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:275
+#: inc/class-sendpulse-newsletter-settings.php:277
+msgid "Client ID"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:284
+#: inc/class-sendpulse-newsletter-settings.php:286
+msgid "Client secret key"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:298
+msgid "Automated subscription"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:299
+msgid "This automatically adds the contacts of newly registered WordPress users to your selected SendPulse mailing list."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:310
+#: inc/class-sendpulse-newsletter-settings.php:587
+msgid "Target mailing list"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:311
+msgid "Used to automatically store the contacts of new WordPress users."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:334
+msgid "Default mailing list for import"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:342
+#: inc/class-sendpulse-newsletter-settings.php:759
+msgid "User role"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:363
+msgid "SendPulse Documentation"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:365
+msgid "SendPulse Settings"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:392
+msgid "Save API Settings"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:402
+msgid "These values are used by default on the user import page."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:402
+msgid "Changing values during an import does not modify these defaults."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:408
+msgid "Save Import Defaults"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:463
+#: inc/class-senpulse-newsletter-forms.php:32
+msgid "SendPulse forms"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:466
+msgid "Create and manage website subscription forms."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:472
+msgid "Access your API credentials and automated subscription settings."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:478
+msgid "Manage your mailing lists and user roles for default imports."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:481
+#: inc/class-sendpulse-newsletter-settings.php:510
+msgid "Documentation"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:484
+msgid "Learn how imports and automated subscription work."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:522
+msgid "Where to find Client ID and Client Secret"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:523
+msgid "Open your SendPulse account settings and go to API."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:524
+msgid "For this plugin, use credentials from the Client credentials tab."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:526
+msgid "Copy Client ID into the Client ID field."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:527
+msgid "Copy Secret into the Client Secret field."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:528
+msgid "Do not use values from the API keys tab for this plugin."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:538
+msgid "Learn how automated subscription of newly registered WordPress users works."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:539
+msgid "How Import Defaults work"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:540
+msgid "Import Defaults define the mailing list and user role that are preselected on the User contact import page."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:541
+msgid "They are saved settings used as a starting point for future imports."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:543
+msgid "Default mailing list for import: preselects the SendPulse mailing list."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:544
+msgid "User role: preselects which WordPress users will be imported."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:545
+msgid "You can override both values on the User contact import page before starting an import."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:550
+msgid "Import Defaults vs User contact import"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:553
+msgid "Saved default settings"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:554
+msgid "Used for future imports"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:558
+msgid "Used for the current import only"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:559
+msgid "Does not modify Import Defaults"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:561
+#: inc/class-sendpulse-newsletter-settings.php:733
+msgid "Updating values on this page doesn’t affect the settings."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:562
+msgid "To permanently change the default mailing list or user role used for future imports, update Import Defaults in Settings."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:566
+msgid "How automated subscription works"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:567
+msgid "When enabled, this feature automatically adds each newly registered WordPress user to the selected SendPulse mailing list."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:571
+msgid "Required WordPress settings"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:572
+msgid "Enabling this feature does not enable user registration automatically."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:573
+msgid "WordPress user registration must be configured separately in Settings > General."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:575
+msgid "Membership: Anyone can register"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:576
+msgid "New User Default Role: choose the role for new users"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:581
+msgid "Registration page"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:582
+msgid "When user registration is enabled, WordPress provides the standard registration page at:"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:588
+msgid "The Target mailing list setting defines which SendPulse mailing list will receive newly registered WordPress users."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:589
+msgid "If no mailing list is selected, automated subscription cannot work correctly."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:593
+msgid "Troubleshooting"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:594
+msgid "If automated subscription does not work, first check that:"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:596
+msgid "WordPress user registration is enabled"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:597
+msgid "Automated subscription is enabled"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:598
+msgid "Target mailing list is selected"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:603
+msgid "Why is the SendPulse subscription form not appearing on my website?"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:604
+msgid "If the subscription form does not appear on your website, the issue is often caused by frontend optimization plugins."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:605
+msgid "Many performance plugins (such as WP Rocket, Autoptimize, LiteSpeed Cache, Fast Velocity Minify, etc.) modify how JavaScript is loaded by enabling features like:"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:607
+msgid "JavaScript minification"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:608
+msgid "JavaScript combination (bundling)"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:609
+msgid "Deferred or delayed script execution"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:610
+msgid "JavaScript optimization and aggregation"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:612
+msgid "These optimizations can change the loading order or execution timing of third-party scripts and may prevent SendPulse subscription forms from loading correctly."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:614
+msgid "How to fix"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:616
+msgid "Temporarily disable JavaScript optimization options and check whether the subscription form starts working."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:617
+msgid "If it does, re-enable options one by one to identify the conflicting setting."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:618
+msgid "Clear all caches after changing optimization settings."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:621
+msgid "For WP Rocket users"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:623
+msgid "Disable the \"Minify JavaScript files\" option"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:624
+msgid "Disable the \"Combine JavaScript files\" option"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:625
+msgid "Disable the \"Delay JavaScript Execution\" option (if enabled)"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:626
+msgid "Clear the cache after making changes"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:630
+msgid "Recommended exclusions"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:631
+msgid "In some cases, excluding SendPulse resources from optimization may help."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:633
+msgid "These resources are required for loading and rendering SendPulse subscription forms."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:636
+msgid "Note"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:636
+msgid "JavaScript combination is often unnecessary on modern HTTP/2 and HTTP/3 websites and may cause compatibility issues with third-party services such as embedded forms, chat widgets, analytics tools, and marketing integrations."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:642
+msgid "Back to Settings"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:650
+#: inc/class-sendpulse-newsletter-settings.php:789
+msgid "Helpful links"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:658
+msgid "opens in a new tab"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:670
+msgid "The SendPulse Email Marketing Newsletter plugin"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:671
+msgid "Learn how to install and configure SendPulse's plugin on WordPress."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:675
+msgid "Simple subscription form"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:676
+msgid "Create your own website subscription form using SendPulse's builder."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:680
+msgid "Multichannel subscription form"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:681
+msgid "Capture contacts through email, SMS, and social media."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:685
+msgid "More about subscription forms"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:686
+msgid "Explore other subscription form features and best practices."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:707
+msgid "Error fetching books: "
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:723
+msgid "SendPulse User Import"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:731
+msgid "The mailing list and user role below were preselected from your saved Import Defaults."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:732
+msgid "Selected values apply only to this import run."
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:744
+msgid "Mailing list"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:777
+msgid "Run import"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:781
 msgid "Import Log"
 msgstr ""
 
-#: inc/class-sendpulse-newsletter-users.php:78
+#: inc/class-sendpulse-newsletter-settings.php:853
+#: inc/class-sendpulse-newsletter-settings.php:856
+msgid "You have no books to show"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-settings.php:858
+msgid "Error API. Please try again later"
+msgstr ""
+
+#: inc/class-sendpulse-newsletter-users.php:118
 msgid "Something went wrong"
 msgstr ""
 
-#: inc/class-senpulse-newsletter-forms.php:33
+#: inc/class-senpulse-newsletter-forms.php:23
 msgctxt "Post type general name"
-msgid "SendPulse Forms"
+msgid "SendPulse forms"
 msgstr ""
 
-#: inc/class-senpulse-newsletter-forms.php:34
+#: inc/class-senpulse-newsletter-forms.php:24
 msgctxt "Post type singular name"
 msgid "SendPulse Form"
 msgstr ""
 
-#: inc/class-senpulse-newsletter-forms.php:35
+#: inc/class-senpulse-newsletter-forms.php:25
 msgctxt "Admin Menu text"
 msgid "SendPulse"
 msgstr ""
 
-#: inc/class-senpulse-newsletter-forms.php:36
+#: inc/class-senpulse-newsletter-forms.php:26
 msgctxt "Add New on Toolbar"
 msgid "SendPulse Form"
 msgstr ""
 
-#: inc/class-senpulse-newsletter-forms.php:37
+#: inc/class-senpulse-newsletter-forms.php:27
 msgctxt "Add New SP form"
-msgid "Add Form"
+msgid "Add form"
 msgstr ""
 
-#: inc/class-senpulse-newsletter-forms.php:38
-msgid "Add New SendPulse Form"
+#: inc/class-senpulse-newsletter-forms.php:28
+msgid "New form"
 msgstr ""
 
-#: inc/class-senpulse-newsletter-forms.php:39
+#: inc/class-senpulse-newsletter-forms.php:29
 msgid "New SendPulse Form"
 msgstr ""
 
-#: inc/class-senpulse-newsletter-forms.php:40
+#: inc/class-senpulse-newsletter-forms.php:30
 msgid "Edit SendPulse Form"
 msgstr ""
 
-#: inc/class-senpulse-newsletter-forms.php:41
+#: inc/class-senpulse-newsletter-forms.php:31
 msgid "View SendPulse Form"
 msgstr ""
 
-#: inc/class-senpulse-newsletter-forms.php:42
-msgid "SendPulse Forms"
+#: inc/class-senpulse-newsletter-forms.php:33
+msgid "Search"
 msgstr ""
 
-#: inc/class-senpulse-newsletter-forms.php:43
-msgid "Search SendPulse Forms"
-msgstr ""
-
-#: inc/class-senpulse-newsletter-forms.php:44
+#: inc/class-senpulse-newsletter-forms.php:34
 msgid "Parent SendPulse Forms:"
 msgstr ""
 
-#: inc/class-senpulse-newsletter-forms.php:45
+#: inc/class-senpulse-newsletter-forms.php:35
 msgid "No SendPulse Forms found."
 msgstr ""
 
-#: inc/class-senpulse-newsletter-forms.php:46
+#: inc/class-senpulse-newsletter-forms.php:36
 msgid "No SendPulse Forms found in Trash."
 msgstr ""
 
-#: inc/class-senpulse-newsletter-forms.php:67
-msgid "Constructor Form Code (paste code SendPulse form)"
+#: inc/class-senpulse-newsletter-forms.php:57
+msgid "Subscription form code"
 msgstr ""
 
-#: inc/class-senpulse-newsletter-forms.php:72
-#: inc/class-senpulse-newsletter-forms.php:159
+#: inc/class-senpulse-newsletter-forms.php:62
+#: inc/class-senpulse-newsletter-forms.php:154
 msgid "Shortcode"
 msgstr ""
 
-#: inc/class-senpulse-newsletter-forms.php:86
-msgid "Paste code here"
+#: inc/class-senpulse-newsletter-forms.php:75
+msgid "Paste the code of your SendPulse-powered form"
 msgstr ""
 
-#: inc/class-senpulse-newsletter-forms.php:87
-#, php-format
-msgid ""
-"Code from <a href=\"%s\">Constructor Form</a> (<a class=\"%s\" href=\"%s\" "
-"title=\"Open help page in new tab\" target=\"_blank\">Need help?</a>)"
+#: inc/class-senpulse-newsletter-forms.php:77
+msgid "Get code from SendPulse builder"
 msgstr ""
 
-#: inc/class-senpulse-newsletter-forms.php:106
-#: inc/class-senpulse-newsletter-forms.php:176
-msgid "You should paste this shortcode in themes files"
+#: inc/class-senpulse-newsletter-forms.php:109
+#: inc/class-senpulse-newsletter-forms.php:167
+msgid "Embed this shortcode in your page, post, or widget"
 msgstr ""
 
-#: inc/class-senpulse-newsletter-forms.php:127
-#: inc/class-senpulse-newsletter-forms.php:146
-#: inc/class-senpulse-newsletter-forms.php:147
+#: inc/class-senpulse-newsletter-forms.php:120
+#: inc/class-senpulse-newsletter-forms.php:143
+#: inc/class-senpulse-newsletter-forms.php:144
 msgid "Save"
 msgstr ""
 
-#: inc/class-senpulse-newsletter-forms.php:134
+#: inc/class-senpulse-newsletter-forms.php:127
 msgid "Delete Permanently"
 msgstr ""
 
-#: inc/class-senpulse-newsletter-forms.php:136
+#: inc/class-senpulse-newsletter-forms.php:129
 msgid "Move to Trash"
 msgstr ""
 
-#: inc/class-senpulse-newsletter-forms.php:189
-#: inc/class-senpulse-newsletter-forms.php:204
+#: inc/class-senpulse-newsletter-forms.php:180
+#: inc/class-senpulse-newsletter-forms.php:195
 msgid "Saved"
 msgstr ""
 
-#: inc/class-senpulse-newsletter-requirement.php:65
-msgid ""
-"We've noticed that you're running an outdated version of PHP and plugin "
-"\"SendPulse Email Marketing Newsletter\" can't run."
+#: inc/class-senpulse-newsletter-requirement.php:70
+msgid "The \"SendPulse Email Marketing Newsletter\" plugin requires PHP 8.0 or higher and cannot run on this site."
 msgstr ""
 
-#: inc/class-senpulse-newsletter-requirement.php:65
-msgid ""
-"Ask you hosting <a href=\"https://wordpress.org/about/requirements/\">update "
-"PHP</a>."
+#: inc/class-senpulse-newsletter-requirement.php:70
+msgid "Please ask your hosting provider to <a href=\"https://wordpress.org/about/requirements/\">upgrade PHP</a>."
 msgstr ""
 
-#: vendor/tareq1988/wordpress-settings-api-class/src/class.settings-api.php:372
-msgid "Choose File"
+#: sendpulse-newsletter.php:28
+msgid "The \"SendPulse Email Marketing Newsletter\" plugin requires PHP version 8.0 or higher. Please upgrade your PHP version."
+msgstr ""
+
+#: sendpulse-newsletter.php:29
+msgid "Plugin Incompatible"
 msgstr ""

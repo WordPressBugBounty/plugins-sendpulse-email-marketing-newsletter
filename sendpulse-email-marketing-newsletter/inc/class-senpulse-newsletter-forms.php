@@ -20,17 +20,17 @@ class Send_Pulse_Newsletter_Forms {
 
 	public function register_forms_post() {
 		$labels = array(
-			'name'               => _x( 'SendPulse Forms', 'Post type general name', 'sendpulse-email-marketing-newsletter' ),
+			'name'               => _x( 'SendPulse forms', 'Post type general name', 'sendpulse-email-marketing-newsletter' ),
 			'singular_name'      => _x( 'SendPulse Form', 'Post type singular name', 'sendpulse-email-marketing-newsletter' ),
 			'menu_name'          => _x( 'SendPulse', 'Admin Menu text', 'sendpulse-email-marketing-newsletter' ),
 			'name_admin_bar'     => _x( 'SendPulse Form', 'Add New on Toolbar', 'sendpulse-email-marketing-newsletter' ),
-			'add_new'            => _x( 'Add Form', 'Add New SP form', 'sendpulse-email-marketing-newsletter' ),
-			'add_new_item'       => __( 'Add New SendPulse Form', 'sendpulse-email-marketing-newsletter' ),
+			'add_new'            => _x( 'Add form', 'Add New SP form', 'sendpulse-email-marketing-newsletter' ),
+			'add_new_item'       => __( 'New form', 'sendpulse-email-marketing-newsletter' ),
 			'new_item'           => __( 'New SendPulse Form', 'sendpulse-email-marketing-newsletter' ),
 			'edit_item'          => __( 'Edit SendPulse Form', 'sendpulse-email-marketing-newsletter' ),
 			'view_item'          => __( 'View SendPulse Form', 'sendpulse-email-marketing-newsletter' ),
-			'all_items'          => __( 'SendPulse Forms', 'sendpulse-email-marketing-newsletter' ),
-			'search_items'       => __( 'Search SendPulse Forms', 'sendpulse-email-marketing-newsletter' ),
+			'all_items'          => __( 'SendPulse forms', 'sendpulse-email-marketing-newsletter' ),
+			'search_items'       => __( 'Search', 'sendpulse-email-marketing-newsletter' ),
 			'parent_item_colon'  => __( 'Parent SendPulse Forms:', 'sendpulse-email-marketing-newsletter' ),
 			'not_found'          => __( 'No SendPulse Forms found.', 'sendpulse-email-marketing-newsletter' ),
 			'not_found_in_trash' => __( 'No SendPulse Forms found in Trash.', 'sendpulse-email-marketing-newsletter' ),
@@ -54,7 +54,7 @@ class Send_Pulse_Newsletter_Forms {
 	public function meta_box() {
 		add_meta_box(
 			'sendpulse_form_code',           // Unique ID
-			__( 'Form builder code (paste your SendPulse form’s code)', 'sendpulse-email-marketing-newsletter' ),  // Box title
+			__( 'Subscription form code', 'sendpulse-email-marketing-newsletter' ),  // Box title
 			array( $this, 'code_metabox_output' ),  // Content callback, must be of type callable
 			'sendpulse_form'                   // Post type
 		);
@@ -72,18 +72,9 @@ class Send_Pulse_Newsletter_Forms {
 		wp_nonce_field( 'sp_form_code_save', 'sp_form_code_nonce' );
 		?>
         <textarea rows="20" cols="40" name="sp_form_code" id="sp_form_code"
-                  placeholder="<?php esc_attr_e( 'Paste code here', 'sendpulse-email-marketing-newsletter' ); ?>"><?php echo esc_textarea( $code ); ?></textarea>
+                  placeholder="<?php esc_attr_e( 'Paste the code of your SendPulse-powered form', 'sendpulse-email-marketing-newsletter' ); ?>"><?php echo esc_textarea( $code ); ?></textarea>
         <p>
-			<?php
-			// translators: 1: URL to the Constructor Form, 2: CSS class name for the help link, 3: URL to the help article
-			$translated_string = __( 'Code from <a href="%1$s">Constructor Form</a> (<a class="%2$s" href="%3$s" title="Open help page in new tab" target="_blank">Need help?</a>)', 'sendpulse-email-marketing-newsletter' );
-			echo wp_kses_post( sprintf(
-				$translated_string,
-				'https://login.sendpulse.com/emailservice/forms/constructor/',
-				'h-help',
-				'https://sendpulse.com/ru/blog/subscription-forms?utm_campaign=novinki-za-sentiabr&utm_source=sendpulse&utm_medium=email'
-			) );
-			?>
+			<?php echo esc_html__( 'Get code from SendPulse builder', 'sendpulse-email-marketing-newsletter' ); ?>
         </p>
 		<?php
 	}
@@ -115,7 +106,7 @@ class Send_Pulse_Newsletter_Forms {
 
 	public function shortcode_metabox_output( $post ) {
 		$this->shortcode_text( $post->ID );?>
-        <p><?php echo esc_html__( 'You should paste this shortcode in your page/post/widget', 'sendpulse-email-marketing-newsletter' ); ?></p>
+        <p><?php echo esc_html__( 'Embed this shortcode in your page, post, or widget', 'sendpulse-email-marketing-newsletter' ); ?></p>
 		<?php $this->post_submit_meta_box( $post );
 	}
 
@@ -173,7 +164,7 @@ class Send_Pulse_Newsletter_Forms {
 
 	protected function shortcode_text( $post_id ) {
 		$shortcode = sprintf( '[sendpulse-form id="%s"]', esc_attr( $post_id ) );
-		$desc      = __( 'You should paste this shortcode in your page/post/widget', 'sendpulse-email-marketing-newsletter' ); ?>
+		$desc      = __( 'Embed this shortcode in your page, post, or widget', 'sendpulse-email-marketing-newsletter' ); ?>
 
         <input type="text" value="<?php echo esc_attr( $shortcode ); ?>" title="<?php echo esc_attr( $desc ); ?>"
                readonly="readonly">

@@ -192,7 +192,7 @@ class Send_Pulse_Newsletter_API
             esc_html__('Ensure owner or group is www-data.', 'sendpulse-email-marketing-newsletter'),
             esc_html__('If using Docker, check file permissions or consult your sysadmin.', 'sendpulse-email-marketing-newsletter'),
             esc_html__('Use only SessionStorage on wordpress.com sites.', 'sendpulse-email-marketing-newsletter'),
-            esc_html__('You can close this notification by clicking dismiss.', 'sendpulse-email-marketing-newsletter'),
+            esc_html__('You can close this notification.', 'sendpulse-email-marketing-newsletter'),
             esc_html__('Dismiss this notification and never show it again.', 'sendpulse-email-marketing-newsletter')
         ));
     }
@@ -203,7 +203,7 @@ class Send_Pulse_Newsletter_API
         echo wp_kses_post(sprintf(
             '<div class="notice notice-success is-dismissible" data-dismiss-action="dismiss_sp_emp_file_storage_notice"><p><strong>%s</strong></p><p>%s</p><button type="button" class="notice-dismiss"><span class="screen-reader-text">%s</span></button></div>',
             esc_html__('The "SendPulse Email Marketing Newsletter" plugin is activated in normal mode using FileStorage.', 'sendpulse-email-marketing-newsletter'),
-            esc_html__('You can close this notification by clicking dismiss.', 'sendpulse-email-marketing-newsletter'),
+            esc_html__('You can close this notification.', 'sendpulse-email-marketing-newsletter'),
             esc_html__('Dismiss this notification and never show it again.', 'sendpulse-email-marketing-newsletter')
         ));
     }
