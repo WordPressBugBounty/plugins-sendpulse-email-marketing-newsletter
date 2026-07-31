@@ -26,6 +26,9 @@ class Send_Pulse_Newsletter_Requirement {
 	public function __construct() {
 
 		$this->php_check();
+		if ( ! class_exists( 'DOMDocument' ) ) {
+			add_action( 'admin_notices', array( $this, 'dom_document_notice' ) );
+		}
 		if ( ! $this->success ) {
 			add_action( 'admin_notices', array( $this, 'admin_notices' ) );
 		}
@@ -71,6 +74,21 @@ class Send_Pulse_Newsletter_Requirement {
 		}
 
 		printf( '<div class="notice notice-error">%s</div>', wp_kses_post( $message ) );
+	}
+
+	/**
+	 * Notify admins that the PHP DOM extension is missing.
+	 */
+	public function dom_document_notice() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
+		printf(
+			'<div class="notice notice-warning"><p><strong>%1$s</strong></p><p>%2$s</p></div>',
+			esc_html__( 'SendPulse form embeds require the PHP DOM extension.', 'sendpulse-email-marketing-newsletter' ),
+			esc_html__( 'The plugin is active, but SendPulse forms cannot be rendered until ext-dom is available on this server.', 'sendpulse-email-marketing-newsletter' )
+		);
 	}
 
 	/**

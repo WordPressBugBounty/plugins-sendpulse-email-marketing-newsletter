@@ -140,7 +140,7 @@ class Send_Pulse_Newsletter_Settings {
 					esc_attr( $name ),
 					esc_attr( $value ),
 					esc_attr( $placeholder ),
-					$this->render_field_description( $name, $desc )
+					wp_kses_post( $this->render_field_description( $name, $desc ) )
 				);
 				break;
 
@@ -159,7 +159,7 @@ class Send_Pulse_Newsletter_Settings {
 					);
 				}
 				echo '</select>';
-				echo $this->render_field_description( $name, $desc );
+				echo wp_kses_post( $this->render_field_description( $name, $desc ) );
 				break;
 		}
 	}
@@ -206,7 +206,7 @@ class Send_Pulse_Newsletter_Settings {
 				esc_attr( $name ),
 				wp_kses_post( $checked ),
 				esc_html( $desc ),
-				$this->render_field_description( $name, $desc )
+				wp_kses_post( $this->render_field_description( $name, $desc ) )
 			);
 			return;
 		}
@@ -216,8 +216,8 @@ class Send_Pulse_Newsletter_Settings {
 			esc_attr( $args['section'] ),
 			esc_attr( $name ),
 			wp_kses_post( $checked ),
-			$this->render_field_description( $name, $desc )
-		);
+				wp_kses_post( $this->render_field_description( $name, $desc ) )
+			);
 	}
 
     /**
@@ -418,8 +418,9 @@ class Send_Pulse_Newsletter_Settings {
         echo '</div>'; // end .wrap
     }
 
-    protected function get_current_tab() {
-        $tab = isset( $_GET['tab'] ) ? sanitize_key( wp_unslash( $_GET['tab'] ) ) : 'settings';
+	protected function get_current_tab() {
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Tab selection is a read-only admin navigation parameter.
+		$tab = isset( $_GET['tab'] ) ? sanitize_key( wp_unslash( $_GET['tab'] ) ) : 'settings';
         $allowed_tabs = array( 'settings', 'documentation' );
 
         if ( ! in_array( $tab, $allowed_tabs, true ) ) {

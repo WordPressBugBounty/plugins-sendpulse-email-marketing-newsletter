@@ -25,87 +25,55 @@ class Send_Pulse_Newsletter_Shortcodes {
 		add_shortcode( 'sendpulse-form', array( $this, 'subscribe_form' ) );
 	}
 
-    private function is_allowed_script($script, $allowed_hosts) {
-        // Prevent DOMDocument error on empty input
-        if (trim($script) === '') {
-            return false;
-        }
+	/**
+	 * Normalize a shortcode form ID without changing legacy absint semantics.
+	 *
+	 * @param mixed $id Shortcode attribute value.
+	 *
+	 * @return int
+	 */
+	public function normalize_form_id( $id ) {
+		if ( ! is_scalar( $id ) ) {
+			return 0;
+		}
 
-        libxml_use_internal_errors(true);
-        $dom = new DOMDocument();
+		return absint( $id );
+	}
 
-        if (defined('LIBXML_HTML_NOIMPLIED') && defined('LIBXML_HTML_NODEFDTD')) {
-            // Modern PHP: Load without adding <html><body>...</body></html> tags
-            $dom->loadHTML($script, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-        } else {
-            // Old PHP fallback: manually wrap inside html/body
-            $dom->loadHTML('<html><body>' . $script . '</body></html>');
-        }
-
-        $scripts = $dom->getElementsByTagName('script');
-        if ($scripts->length !== 1) {
-            return false;
-        }
-
-        $tag = $scripts->item(0);
-        $src = $tag->getAttribute('src');
-        if (!$src) {
-            return false;
-        }
-
-        if (strpos($src, '//') === 0) {
-            $src = 'https:' . $src;
-        }
-
-	    $parts = wp_parse_url( $src );
-	    $host = $parts['host'] ?? '';
-	    if ( ! $host || ! in_array( strtolower( $host ), array_map( 'strtolower', $allowed_hosts ), true ) ) {
-		    return false;
-	    }
-
-        $allowed_attrs = ['src', 'async', 'sp-form-id', 'type'];
-        foreach ($tag->attributes as $attr) {
-            $name = strtolower($attr->name);
-            $value = strtolower($attr->value);
-
-            if (!in_array($name, $allowed_attrs, true)) {
-                return false;
-            }
-
-            if ($name === 'type' && $value !== 'text/javascript') {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    /**
+	/**
      * Generate subscribe form shortcode
      *
      * @return string Subscribe form html.
      */
-    public function subscribe_form( $atts ) {
-        $output = '';
+	    public function subscribe_form( $atts ) {
+	        $atts = shortcode_atts(
+				array(
+					'id' => 0,
+				),
+				(array) $atts,
+				'sendpulse-form'
+				);
 
-        if ( $atts && isset( $atts['id'] ) ) {
-            $post_id = $atts['id'];
+	        $post_id = $this->normalize_form_id( $atts['id'] );
 
-            $allowed_urls = array(
-                'web.webformscr.com',
-                'static-login.sendpulse.com'
-            );
+	        if ( ! $post_id ) {
+		        return '';
+	        }
 
-            $output  = get_post_meta( $post_id, '_sp_form_code', true );
-            if ($this->is_allowed_script($output, $allowed_urls)) {
-                return $output; // Safe to output
-            } else {
-                return esc_html($output); // Escape unexpected input
-            }
-        }
+	        if ( 'sendpulse_form' !== get_post_type( $post_id ) ) {
+	        	return '';
+	        }
 
-        return esc_html($output);
-    }
+	        $post_status = get_post_status( $post_id );
+	        if ( false === $post_status || in_array( $post_status, array( 'trash', 'auto-draft' ), true ) ) {
+	        	return '';
+	        }
+
+	        $output = get_post_meta( $post_id, '_sp_form_code', true );
+	        $normalized_output = sendpulse_email_marketing_newsletter_normalize_form_embed_code( $output );
+
+	        return is_string( $normalized_output ) && '' !== $normalized_output ? $normalized_output : '';
+	    }
 
 }
 

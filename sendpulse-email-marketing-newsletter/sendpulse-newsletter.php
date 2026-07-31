@@ -3,7 +3,7 @@
 	Plugin Name: SendPulse Email Marketing Newsletter
 	Plugin URI: https://wordpress.org/plugins/sendpulse-email-marketing-newsletter/
 	Description: Add e-mail subscription form, send marketing newsletters and create autoresponders.
-	Version: 2.2.5
+		Version: 2.2.6
 	Author: SendPulse
 	Author URI: https://sendpulse.com
 	License:     GPL2
@@ -36,7 +36,7 @@ if ( version_compare( PHP_VERSION, '8.0.0', '<' ) ) {
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-const SP_EMAIL_MARKETING_VERSION = '2.2.5';
+const SP_EMAIL_MARKETING_VERSION = '2.2.6';
 define( 'SP_EMAIL_MARKETING_PLUGIN_BASE_NAME', plugin_basename( __FILE__ ) );
 define( 'SP_EMAIL_MARKETING_PLUGIN_BASE_DIR', plugin_dir_path( __FILE__ ) );
 const SP_EMAIL_MARKETING_PLUGIN_STORAGE_DIR = SP_EMAIL_MARKETING_PLUGIN_BASE_DIR . 'storage/';
@@ -111,6 +111,17 @@ register_deactivation_hook( __FILE__, 'sendpulse_email_marketing_newsletter_plug
  * @return void
  */
 function sendpulse_email_marketing_newsletter_dismiss_file_storage_notice() {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		wp_send_json_error(
+			array(
+				'message' => __( 'You are not allowed to perform this action.', 'sendpulse-email-marketing-newsletter' ),
+			),
+			403
+		);
+	}
+
+	check_ajax_referer( 'sendpulse_notice_dismiss', 'nonce' );
+
 	update_option( 'sp_emp_file_storage_notice_dismissed', true );
 	wp_die(); // This is necessary to end the AJAX request properly.
 }
@@ -126,6 +137,17 @@ add_action(
  * @return void
  */
 function sendpulse_email_marketing_newsletter_dismiss_session_storage_notice() {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		wp_send_json_error(
+			array(
+				'message' => __( 'You are not allowed to perform this action.', 'sendpulse-email-marketing-newsletter' ),
+			),
+			403
+		);
+	}
+
+	check_ajax_referer( 'sendpulse_notice_dismiss', 'nonce' );
+
 	update_option( 'sp_emp_session_storage_notice_dismissed', true );
 	wp_die(); // This is necessary to end the AJAX request properly.
 }

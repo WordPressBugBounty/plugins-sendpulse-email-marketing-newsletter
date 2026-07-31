@@ -11,7 +11,8 @@ jQuery(document).ready(function($) {
             url: sp_emp_dismiss_script_vars.ajaxurl,
             type: 'POST',
             data: {
-                action: dismissAction
+                action: dismissAction,
+                nonce: sp_emp_dismiss_script_vars.nonce
             },
             success: function() {
                 $notice.fadeOut();

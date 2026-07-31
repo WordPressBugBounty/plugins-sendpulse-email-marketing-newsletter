@@ -36,6 +36,7 @@ class Send_Pulse_Newsletter_Loader {
 	 * Include libraries and additional class.
 	 */
 	protected function inc() {
+		include_once( 'class-senpulse-newsletter-form-embed.php' );
 		include_once( 'class-senpulse-newsletter-forms.php' );
 		include_once( 'class-sendpulse-newsletter-api.php' );
 		include_once( 'class-sendpulse-newsletter-settings.php' );
@@ -63,13 +64,14 @@ class Send_Pulse_Newsletter_Loader {
         );
 
         // Localize vars used by sp-newsletter-admin-dismiss-script.js.
-        wp_localize_script(
-            'sendpulse-email-marketing-newsletter-dismiss-script',
-            'sp_emp_dismiss_script_vars',
-            array(
-                'ajaxurl' => admin_url( 'admin-ajax.php' ),
-            )
-        );
+		wp_localize_script(
+			'sendpulse-email-marketing-newsletter-dismiss-script',
+			'sp_emp_dismiss_script_vars',
+			array(
+				'ajaxurl' => admin_url( 'admin-ajax.php' ),
+				'nonce'   => wp_create_nonce( 'sendpulse_notice_dismiss' ),
+			)
+		);
 
         // From here on, only care about importer (sensitive) stuff.
         if ( ! function_exists( 'get_current_screen' ) ) {

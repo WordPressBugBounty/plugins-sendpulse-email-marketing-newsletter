@@ -104,4 +104,3 @@ $sendpulse_email_marketing_newsletter_group_text      = wp_kses_post( '<b>www-da
 </script>
 
 <?php require_once ABSPATH . 'wp-admin/admin-footer.php'; ?>
-

@@ -11,10 +11,10 @@ use Sendpulse\RestApi\Storage\FileStorage;
 class Send_Pulse_Newsletter_API
 {
 
-    /**
-     * @var ApiClient
-     */
-    protected $api;
+	/**
+	 * @var ApiClient|null
+	 */
+	protected $api;
 
     /**
      * @var bool Whether API client is ready for requests.
@@ -83,10 +83,10 @@ class Send_Pulse_Newsletter_API
         return $this->api;
     }
 
-    public function is_available()
-    {
-        return $this->is_available && $this->api;
-    }
+	public function is_available()
+	{
+		return $this->is_available && null !== $this->api;
+	}
 
     public function get_last_error()
     {

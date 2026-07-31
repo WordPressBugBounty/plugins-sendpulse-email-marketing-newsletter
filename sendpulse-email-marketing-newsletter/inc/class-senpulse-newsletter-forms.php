@@ -80,6 +80,14 @@ class Send_Pulse_Newsletter_Forms {
 	}
 
 	public function save_meta( $post_id ) {
+		if ( $this->post_type !== get_post_type( $post_id ) ) {
+			return;
+		}
+
+		if ( wp_is_post_revision( $post_id ) || wp_is_post_autosave( $post_id ) ) {
+			return;
+		}
+
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$nonce = isset( $_POST['sp_form_code_nonce'] ) ? wp_unslash( $_POST['sp_form_code_nonce'] ) : '';
 
@@ -87,12 +95,10 @@ class Send_Pulse_Newsletter_Forms {
 			return;
 		}
 
-		// Bail early on autosave
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return;
 		}
 
-		// Capability check
 		if ( ! current_user_can( 'edit_post', $post_id ) ) {
 			return;
 		}
@@ -100,7 +106,18 @@ class Send_Pulse_Newsletter_Forms {
 		if ( isset( $_POST['sp_form_code'] ) ) {
 			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			$raw_code = wp_unslash( $_POST['sp_form_code'] );
-			update_post_meta( $post_id, '_sp_form_code', $raw_code );
+			$sanitized_code = sendpulse_email_marketing_newsletter_normalize_form_embed_code( $raw_code );
+
+			if ( null === $sanitized_code ) {
+				return;
+			}
+
+			if ( '' === $sanitized_code ) {
+				delete_post_meta( $post_id, '_sp_form_code' );
+				return;
+			}
+
+			update_post_meta( $post_id, '_sp_form_code', $sanitized_code );
 		}
 	}
 
