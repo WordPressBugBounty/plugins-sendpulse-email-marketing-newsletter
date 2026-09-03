@@ -4,7 +4,7 @@ Tags: email marketing, newsletter, subscription form, email optin, autoresponder
 Requires PHP: 8.0
 Requires at least: 5.7
 Tested up to: 7.0
-Stable tag: 2.2.6
+Stable tag: 2.2.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -99,36 +99,6 @@ These resources are required for loading and rendering SendPulse subscription fo
 
 Note:
 JavaScript combination is often unnecessary on modern HTTP/2 and HTTP/3 websites and may cause compatibility issues with third-party services such as embedded forms, chat widgets, analytics tools, and marketing integrations.
-
-== Changelog ==
-= 2.2.6 =
-* Security: fixed stored XSS in SendPulse form embed rendering for `_sp_form_code`.
-* Security: hardened form embed validation on save and render.
-* Tested up to WordPress 7.0.2.
-
-= 2.2.5 =
-* Improved the plugin admin UI and overall user experience.
-* Added visual indicators for external documentation links.
-* Expanded the Documentation section with troubleshooting guidance for JavaScript optimization, caching, and performance plugins.
-* Improved onboarding and setup instructions inside the plugin.
-* Updated and synchronized plugin translations.
-* Refined interface terminology and help texts for improved consistency.
-* Minor fixes and usability improvements.
-
-= 2.2.4 =
-* Removed legacy layer/packages
-* Cleaned legacy plugin assets
-* Removed unused legacy hooks and duplicate AJAX registrations
-* Unified minimum PHP requirement to PHP 8.0 across the plugin
-* Improved overall plugin maintainability
-
-= 2.2.3 =
-* Improved plugin stability when the SendPulse API is temporarily unavailable.
-* Prevented fatal errors caused by unexpected API responses or connection failures.
-* Improved error handling for mailing list loading, AJAX import actions, and user registration subscription.
-
-= 2.2.2 =
-* Maintenance release.
 
 == Screenshots ==
 1. SendPulse Forms table view.
